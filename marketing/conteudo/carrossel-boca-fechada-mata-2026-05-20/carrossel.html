@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boca Fechada Mata — Eugenio Macedo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body { font-family: 'Inter', sans-serif; background: #111; }
+
+  .slide {
+    width: 1080px;
+    height: 1350px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+
+  /* ── CORES ── */
+  .dark  { background: #0E1520; }
+  .light { background: #F5ECD7; }
+  .gold  { background: #C49A2A; }
+
+  /* ── HEADER (logo + counter) ── */
+  .header {
+    position: absolute;
+    top: 56px;
+    left: 72px;
+    right: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 10;
+  }
+  .logo {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+  }
+  .logo.on-dark  { color: #C49A2A; }
+  .logo.on-light { color: #0E1520; }
+  .logo.on-gold  { color: #0E1520; }
+
+  .counter {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+  }
+  .counter.on-dark  { color: rgba(245,240,232,0.35); }
+  .counter.on-light { color: rgba(14,21,32,0.35); }
+  .counter.on-gold  { color: rgba(14,21,32,0.45); }
+
+  /* ── LINHA FINA (divisor de rodapé) ── */
+  .footer-line {
+    position: absolute;
+    bottom: 72px;
+    left: 72px;
+    right: 72px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 20px;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.3);
+  }
+  .footer-line.on-light {
+    border-top: 1px solid rgba(14,21,32,0.12);
+    color: rgba(14,21,32,0.3);
+  }
+  .footer-line.on-gold {
+    border-top: 1px solid rgba(14,21,32,0.15);
+    color: rgba(14,21,32,0.4);
+  }
+
+  /* ── EYEBROW ── */
+  .eyebrow {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #C49A2A;
+    margin-bottom: 20px;
+  }
+  .eyebrow.dark-text { color: #0E1520; }
+
+  /* ── RÉGUA ── */
+  .rule {
+    width: 64px;
+    height: 3px;
+    background: #C49A2A;
+    margin-bottom: 32px;
+  }
+  .rule.dark { background: #0E1520; }
+  .rule.white { background: #F5F0E8; }
+
+  /* ── SLIDE 1: CAPA COM FOTO ── */
+  #s1 {
+    background:
+      linear-gradient(to bottom, rgba(14,21,32,0.45) 0%, rgba(14,21,32,0.88) 100%),
+      url('../../../identidade/foto-eugenio.jpg.png') center top / cover no-repeat;
+  }
+  #s1 .content {
+    position: absolute;
+    bottom: 120px;
+    left: 72px;
+    right: 72px;
+  }
+  #s1 .title {
+    font-size: 100px;
+    font-weight: 900;
+    line-height: 0.96;
+    letter-spacing: -0.04em;
+    color: #F5F0E8;
+    margin-bottom: 32px;
+  }
+  #s1 .subtitle {
+    font-size: 20px;
+    font-weight: 500;
+    color: rgba(245,240,232,0.65);
+    line-height: 1.5;
+    max-width: 520px;
+  }
+
+  /* ── SLIDE 2: SOLO dark ── */
+  #s2 .content {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 72px;
+    right: 72px;
+  }
+  #s2 .big-num {
+    font-size: 260px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    color: rgba(196,154,42,0.12);
+    position: absolute;
+    top: 72px;
+    right: 40px;
+  }
+  #s2 .phrase {
+    font-size: 68px;
+    font-weight: 800;
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+    color: #F5F0E8;
+    max-width: 780px;
+  }
+
+  /* ── SLIDE 3: CITAÇÃO light ── */
+  #s3 .content {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 72px;
+    right: 72px;
+  }
+  #s3 .quote-mark {
+    font-size: 220px;
+    font-weight: 900;
+    line-height: 0.7;
+    color: rgba(196,154,42,0.15);
+    margin-bottom: 8px;
+    font-family: Georgia, serif;
+  }
+  #s3 .phrase {
+    font-size: 64px;
+    font-weight: 800;
+    line-height: 1.06;
+    letter-spacing: -0.035em;
+    color: #1A1A1A;
+    max-width: 820px;
+  }
+
+  /* ── SLIDE 4: NÚMERO dark ── */
+  #s4 .content {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-55%);
+    left: 72px;
+    right: 72px;
+  }
+  #s4 .phrase {
+    font-size: 58px;
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: #F5F0E8;
+    max-width: 820px;
+  }
+  #s4 .phrase em {
+    font-style: normal;
+    color: #C49A2A;
+  }
+
+  /* ── SLIDE 5: VIRADA gold ── */
+  #s5 .content {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 72px;
+    right: 72px;
+  }
+  #s5 .label {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(14,21,32,0.5);
+    margin-bottom: 28px;
+  }
+  #s5 .phrase {
+    font-size: 66px;
+    font-weight: 900;
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+    color: #0E1520;
+    max-width: 840px;
+    margin-bottom: 28px;
+  }
+  #s5 .phrase-2 {
+    font-size: 28px;
+    font-weight: 600;
+    color: rgba(14,21,32,0.65);
+    line-height: 1.4;
+  }
+
+  /* ── SLIDE 6: CITAÇÃO light ── */
+  #s6 .content {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 72px;
+    right: 72px;
+  }
+  #s6 .phrase {
+    font-size: 72px;
+    font-weight: 900;
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+    color: #1A1A1A;
+    max-width: 840px;
+    margin-bottom: 32px;
+  }
+  #s6 .complement {
+    font-size: 26px;
+    font-weight: 600;
+    color: #C49A2A;
+    letter-spacing: 0.01em;
+  }
+
+  /* ── SLIDE 7: CTA FINAL ── */
+  #s7 {
+    background:
+      linear-gradient(to right, rgba(14,21,32,0.96) 50%, rgba(14,21,32,0.65) 100%),
+      url('../../../identidade/foto-eugenio.jpg.png') right center / cover no-repeat;
+  }
+  #s7 .content {
+    position: absolute;
+    bottom: 140px;
+    left: 72px;
+    right: 72px;
+  }
+  #s7 .cta-label {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #C49A2A;
+    margin-bottom: 24px;
+  }
+  #s7 .cta-title {
+    font-size: 80px;
+    font-weight: 900;
+    line-height: 0.96;
+    letter-spacing: -0.04em;
+    color: #F5F0E8;
+    margin-bottom: 40px;
+  }
+  #s7 .handle {
+    font-size: 22px;
+    font-weight: 600;
+    color: rgba(245,240,232,0.55);
+    letter-spacing: 0.05em;
+  }
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1 — CAPA -->
+<div class="slide" id="s1">
+  <div class="header">
+    <span class="logo on-dark">Eugenio Macedo</span>
+    <span class="counter on-dark">01 / 07</span>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Negócios &amp; Vida</div>
+    <div class="title">BOCA<br>FECHADA<br>MATA.</div>
+    <div class="subtitle">Sobre o silêncio que custa mais caro do que você imagina.</div>
+  </div>
+  <div class="footer-line">@eugenio.macedo</div>
+</div>
+
+<!-- SLIDE 2 — SOLO dark -->
+<div class="slide dark" id="s2">
+  <div class="header">
+    <span class="logo on-dark">Eugenio Macedo</span>
+    <span class="counter on-dark">02 / 07</span>
+  </div>
+  <div class="big-num">1</div>
+  <div class="content">
+    <div class="eyebrow">O silêncio que mata</div>
+    <div class="rule white"></div>
+    <div class="phrase">Mata o negócio que você não pediu.</div>
+  </div>
+  <div class="footer-line">@eugenio.macedo</div>
+</div>
+
+<!-- SLIDE 3 — CITAÇÃO light -->
+<div class="slide light" id="s3">
+  <div class="header">
+    <span class="logo on-light">Eugenio Macedo</span>
+    <span class="counter on-light">03 / 07</span>
+  </div>
+  <div class="content">
+    <div class="quote-mark">"</div>
+    <div class="rule"></div>
+    <div class="phrase">Mata o cliente que você não abordou.</div>
+  </div>
+  <div class="footer-line on-light">@eugenio.macedo</div>
+</div>
+
+<!-- SLIDE 4 — dark -->
+<div class="slide dark" id="s4">
+  <div class="header">
+    <span class="logo on-dark">Eugenio Macedo</span>
+    <span class="counter on-dark">04 / 07</span>
+  </div>
+  <div class="content">
+    <div class="eyebrow">E no mercado de carros?</div>
+    <div class="rule white"></div>
+    <div class="phrase">Mata o carro que ficou parado esperando você <em>falar o preço</em>.</div>
+  </div>
+  <div class="footer-line">@eugenio.macedo</div>
+</div>
+
+<!-- SLIDE 5 — VIRADA gold -->
+<div class="slide gold" id="s5">
+  <div class="header">
+    <span class="logo on-gold">Eugenio Macedo</span>
+    <span class="counter on-gold">05 / 07</span>
+  </div>
+  <div class="content">
+    <div class="label">Mas existe outro silêncio</div>
+    <div class="phrase">Quem tem experiência e não compartilha.</div>
+    <div class="phrase-2">Esse também mata — só que devagar.</div>
+  </div>
+  <div class="footer-line on-gold">@eugenio.macedo</div>
+</div>
+
+<!-- SLIDE 6 — light -->
+<div class="slide light" id="s6">
+  <div class="header">
+    <span class="logo on-light">Eugenio Macedo</span>
+    <span class="counter on-light">06 / 07</span>
+  </div>
+  <div class="content">
+    <div class="eyebrow">O que aprendi</div>
+    <div class="rule"></div>
+    <div class="phrase">Quem sabe e não fala perde duas vezes.</div>
+    <div class="complement">O negócio e a conexão.</div>
+  </div>
+  <div class="footer-line on-light">@eugenio.macedo</div>
+</div>
+
+<!-- SLIDE 7 — CTA com foto -->
+<div class="slide" id="s7">
+  <div class="header">
+    <span class="logo on-dark">Eugenio Macedo</span>
+    <span class="counter on-dark">07 / 07</span>
+  </div>
+  <div class="content">
+    <div class="cta-label">Eugenio Macedo</div>
+    <div class="cta-title">Estou aqui<br>pra falar.</div>
+    <div class="handle">@eugenio.macedo</div>
+  </div>
+</div>
+
+</body>
+</html>

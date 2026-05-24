@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>Se cobrando demais — Eugenio Macedo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #888;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px;
+}
+
+/* ── Base ── */
+.slide {
+  width: 1080px;
+  height: 1350px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #FAF8F3;
+}
+
+.slide-dark { background: #0E1520; }
+
+/* ── Top bar ── */
+.topbar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  padding: 52px 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.brand-light { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(14,21,32,0.3); }
+.brand-dark  { font-size: 17px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
+.count-light { font-size: 16px; font-weight: 500; letter-spacing: 0.1em; color: rgba(14,21,32,0.22); }
+.count-dark  { font-size: 16px; font-weight: 500; letter-spacing: 0.1em; color: rgba(255,255,255,0.2); }
+
+/* ── Body — centered ── */
+.body {
+  position: absolute;
+  top: 130px; bottom: 120px;
+  left: 72px; right: 72px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 56px;
+  text-align: center;
+}
+
+/* ── Setup text ── */
+.setup {
+  font-size: 38px;
+  font-weight: 800;
+  color: #0E1520;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.setup-dark {
+  font-size: 30px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+}
+
+/* ── Caption below element ── */
+.caption {
+  font-size: 28px;
+  font-weight: 400;
+  color: rgba(14,21,32,0.6);
+  letter-spacing: -0.01em;
+  line-height: 1.5;
+  max-width: 820px;
+}
+
+.caption-dark {
+  font-size: 30px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+}
+
+/* ── Footer ── */
+.footer {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 0 72px 52px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.gold-line { flex: 1; height: 2px; background: #C49A2A; opacity: 0.5; }
+.handle-light { font-size: 17px; font-weight: 600; letter-spacing: 0.1em; color: rgba(14,21,32,0.28); flex-shrink: 0; }
+.handle-dark  { font-size: 17px; font-weight: 600; letter-spacing: 0.1em; color: rgba(255,255,255,0.22); flex-shrink: 0; }
+
+/* ══════════════════════════════════════
+   VISUAL ELEMENTS
+══════════════════════════════════════ */
+
+/* ── 1. RECAPTCHA ── */
+.captcha-box {
+  width: 820px;
+  background: #fff;
+  border: 1.5px solid #D8D3C8;
+  border-radius: 4px;
+  padding: 32px 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.captcha-left {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.check-wrap {
+  width: 62px;
+  height: 62px;
+  border: 2px solid #C49A2A;
+  border-radius: 3px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.check-wrap svg { width: 36px; height: 36px; }
+
+.captcha-label-text {
+  font-size: 32px;
+  font-weight: 500;
+  color: #1A1A1A;
+  letter-spacing: -0.01em;
+}
+
+.captcha-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  opacity: 0.45;
+}
+
+.captcha-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid #999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 900;
+  color: #555;
+}
+
+.captcha-brand-name { font-size: 11px; font-weight: 700; color: #555; letter-spacing: 0.05em; }
+.captcha-sub-text   { font-size: 10px; color: #999; letter-spacing: 0.03em; }
+
+/* ── 2. NOTA FISCAL ── */
+.receipt {
+  width: 780px;
+  background: #fff;
+  border: 1.5px solid #D8D3C8;
+  border-radius: 4px;
+  padding: 44px 52px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  position: relative;
+}
+
+.receipt-title {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(14,21,32,0.35);
+  text-align: center;
+  margin-bottom: 32px;
+  font-family: 'Courier New', monospace;
+}
+
+.receipt-divider {
+  border: none;
+  border-top: 1.5px dashed #D0CAC0;
+  margin: 24px 0;
+}
+
+.receipt-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 18px;
+  gap: 16px;
+}
+
+.receipt-row-label {
+  font-size: 22px;
+  font-weight: 400;
+  color: rgba(14,21,32,0.6);
+  font-family: 'Courier New', monospace;
+}
+
+.receipt-row-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: #0E1520;
+  font-family: 'Courier New', monospace;
+  flex-shrink: 0;
+}
+
+.receipt-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 4px;
+}
+
+.receipt-total-label {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #0E1520;
+  font-family: 'Courier New', monospace;
+}
+
+.receipt-total-value {
+  font-size: 20px;
+  font-weight: 800;
+  color: #C49A2A;
+  font-family: 'Courier New', monospace;
+}
+
+.receipt-stamp {
+  position: absolute;
+  bottom: 40px;
+  right: 44px;
+  border: 3px solid #C49A2A;
+  border-radius: 4px;
+  color: #C49A2A;
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 8px 18px;
+  transform: rotate(-12deg);
+  opacity: 0.85;
+  font-family: 'Courier New', monospace;
+}
+
+/* ── 3. BATERIA ── */
+.battery-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+.battery-body-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.battery-body {
+  width: 680px;
+  height: 160px;
+  border: 3px solid #0E1520;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+}
+
+.battery-fill {
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 20%;
+  background: #C49A2A;
+  transition: none;
+}
+
+.battery-pct {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 52px;
+  font-weight: 900;
+  color: #0E1520;
+  letter-spacing: -0.03em;
+  z-index: 2;
+}
+
+.battery-bolt {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-20px, -50%);
+  font-size: 52px;
+  z-index: 2;
+  opacity: 0.12;
+}
+
+.battery-tip {
+  width: 20px;
+  height: 70px;
+  background: #0E1520;
+  border-radius: 0 6px 6px 0;
+  flex-shrink: 0;
+}
+
+.battery-label {
+  display: flex;
+  justify-content: space-between;
+  width: 700px;
+}
+
+.battery-label span {
+  font-size: 17px;
+  font-weight: 500;
+  color: rgba(14,21,32,0.35);
+  letter-spacing: 0.05em;
+}
+
+.battery-label .charging {
+  color: #C49A2A;
+  font-weight: 700;
+}
+
+/* ── 4. BARRA DE PROGRESSO ── */
+.progress-wrap {
+  width: 870px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.progress-title-label {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(14,21,32,0.35);
+  text-align: left;
+}
+
+.progress-track {
+  width: 100%;
+  height: 72px;
+  background: #EEEBE3;
+  border-radius: 8px;
+  position: relative;
+  overflow: visible;
+}
+
+.progress-fill-bar {
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 75%;
+  background: linear-gradient(90deg, #0E1520 0%, #C49A2A 100%);
+  border-radius: 8px;
+}
+
+.progress-marker-dot {
+  position: absolute;
+  top: 50%;
+  left: 75%;
+  transform: translate(-50%, -50%);
+  width: 28px;
+  height: 28px;
+  background: #fff;
+  border: 3px solid #C49A2A;
+  border-radius: 50%;
+  z-index: 5;
+}
+
+.progress-you-label {
+  position: absolute;
+  top: -42px;
+  left: 75%;
+  transform: translateX(-50%);
+  font-size: 17px;
+  font-weight: 700;
+  color: #C49A2A;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.progress-legend {
+  display: flex;
+  justify-content: space-between;
+}
+
+.progress-legend span {
+  font-size: 17px;
+  font-weight: 500;
+  color: rgba(14,21,32,0.35);
+  letter-spacing: 0.04em;
+}
+
+/* ── CAPA headline ── */
+.capa-headline {
+  font-size: 94px;
+  font-weight: 900;
+  line-height: 1.0;
+  letter-spacing: -0.035em;
+  color: #F5ECD7;
+  text-align: center;
+}
+
+.capa-headline .gold { color: #C49A2A; }
+
+.capa-sub {
+  font-size: 28px;
+  font-weight: 400;
+  color: rgba(245,236,215,0.4);
+  text-align: center;
+  letter-spacing: -0.01em;
+}
+
+/* ── CTA ── */
+.cta-headline {
+  font-size: 100px;
+  font-weight: 900;
+  line-height: 1.0;
+  letter-spacing: -0.04em;
+  color: #F5ECD7;
+  text-align: center;
+}
+
+.cta-headline .gold { color: #C49A2A; }
+</style>
+</head>
+<body>
+
+<!-- ══ S1 — CAPA ══ -->
+<div class="slide slide-dark">
+  <svg style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none" viewBox="0 0 1080 1350">
+    <circle cx="1060" cy="260"  r="440" fill="none" stroke="rgba(196,154,42,0.08)" stroke-width="2"/>
+    <circle cx="1060" cy="260"  r="300" fill="none" stroke="rgba(196,154,42,0.07)" stroke-width="1.5"/>
+    <circle cx="1060" cy="260"  r="160" fill="none" stroke="rgba(196,154,42,0.06)" stroke-width="1.5"/>
+  </svg>
+  <div class="topbar">
+    <span class="brand-dark">Eugenio Macedo</span>
+    <span class="count-dark">01 / 06</span>
+  </div>
+  <div class="body">
+    <h1 class="capa-headline">Quando estiver<br>se cobrando<br><span class="gold">demais,</span></h1>
+    <p class="capa-sub">lembra-se destas quatro coisas.</p>
+  </div>
+  <div class="footer">
+    <div class="gold-line"></div>
+    <span class="handle-dark">@eugenio.macedo</span>
+  </div>
+</div>
+
+<!-- ══ S2 — RECAPTCHA ══ -->
+<div class="slide">
+  <div class="topbar">
+    <span class="brand-light">Eugenio Macedo</span>
+    <span class="count-light">02 / 06</span>
+  </div>
+  <div class="body">
+    <p class="setup">Aceitação<br>do passado</p>
+
+    <div class="captcha-box">
+      <div class="captcha-left">
+        <div class="check-wrap">
+          <svg viewBox="0 0 36 36" fill="none">
+            <polyline points="6,18 14,26 30,10" stroke="#C49A2A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="captcha-label-text">Não sou um robô</span>
+      </div>
+      <div class="captcha-right">
+        <div class="captcha-badge">r</div>
+        <span class="captcha-brand-name">reCAPTCHA</span>
+        <span class="captcha-sub-text">Privacidade · Termos</span>
+      </div>
+    </div>
+
+    <p class="caption">Reconheça seus erros antigos como<br>degraus essenciais para o seu aprendizado.</p>
+  </div>
+  <div class="footer">
+    <div class="gold-line"></div>
+    <span class="handle-light">@eugenio.macedo</span>
+  </div>
+</div>
+
+<!-- ══ S3 — NOTA FISCAL ══ -->
+<div class="slide">
+  <div class="topbar">
+    <span class="brand-light">Eugenio Macedo</span>
+    <span class="count-light">03 / 06</span>
+  </div>
+  <div class="body">
+    <p class="setup">Celebração<br>das vitórias</p>
+
+    <div class="receipt">
+      <div class="receipt-title">Nota Fiscal — Conquistas Acumuladas</div>
+      <hr class="receipt-divider">
+      <div class="receipt-row">
+        <span class="receipt-row-label">1x  Obstáculo superado</span>
+        <span class="receipt-row-value">R$ ∞</span>
+      </div>
+      <div class="receipt-row">
+        <span class="receipt-row-label">1x  Decisão difícil tomada</span>
+        <span class="receipt-row-value">R$ ∞</span>
+      </div>
+      <div class="receipt-row" style="margin-bottom:0">
+        <span class="receipt-row-label">1x  Dia que você não desistiu</span>
+        <span class="receipt-row-value">R$ ∞</span>
+      </div>
+      <hr class="receipt-divider">
+      <div class="receipt-total-row">
+        <span class="receipt-total-label">Saldo</span>
+        <span class="receipt-total-value">POSITIVO ✓</span>
+      </div>
+      <div class="receipt-stamp">Celebre</div>
+    </div>
+
+    <p class="caption">Valorize os momentos de superação,<br>por menores que pareçam.</p>
+  </div>
+  <div class="footer">
+    <div class="gold-line"></div>
+    <span class="handle-light">@eugenio.macedo</span>
+  </div>
+</div>
+
+<!-- ══ S4 — BATERIA ══ -->
+<div class="slide">
+  <div class="topbar">
+    <span class="brand-light">Eugenio Macedo</span>
+    <span class="count-light">04 / 06</span>
+  </div>
+  <div class="body">
+    <p class="setup">Respeito<br>ao tempo</p>
+
+    <div class="battery-wrap">
+      <div class="battery-body-wrap">
+        <div class="battery-body">
+          <div class="battery-fill"></div>
+          <span class="battery-bolt">⚡</span>
+          <span class="battery-pct">20%</span>
+        </div>
+        <div class="battery-tip"></div>
+      </div>
+      <div class="battery-label">
+        <span>Esgotado</span>
+        <span class="charging">⚡ Carregando</span>
+        <span>100%</span>
+      </div>
+    </div>
+
+    <p class="caption">Compreenda que mudanças profundas<br>exigem paciência e constância.</p>
+  </div>
+  <div class="footer">
+    <div class="gold-line"></div>
+    <span class="handle-light">@eugenio.macedo</span>
+  </div>
+</div>
+
+<!-- ══ S5 — PROGRESSO ══ -->
+<div class="slide">
+  <div class="topbar">
+    <span class="brand-light">Eugenio Macedo</span>
+    <span class="count-light">05 / 06</span>
+  </div>
+  <div class="body">
+    <p class="setup">Autoacolhimento<br>diário</p>
+
+    <div class="progress-wrap">
+      <div class="progress-title-label">Sua jornada</div>
+      <div class="progress-track">
+        <div class="progress-fill-bar"></div>
+        <div class="progress-you-label">Você</div>
+        <div class="progress-marker-dot"></div>
+      </div>
+      <div class="progress-legend">
+        <span>Início</span>
+        <span>75% percorrido</span>
+        <span>· · ·</span>
+      </div>
+    </div>
+
+    <p class="caption">Pratique a autocompaixão em vez<br>de se cobrar por perfeição constante.</p>
+  </div>
+  <div class="footer">
+    <div class="gold-line"></div>
+    <span class="handle-light">@eugenio.macedo</span>
+  </div>
+</div>
+
+<!-- ══ S6 — CTA ══ -->
+<div class="slide slide-dark">
+  <svg style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none" viewBox="0 0 1080 1350">
+    <circle cx="20"   cy="1100" r="420" fill="none" stroke="rgba(196,154,42,0.08)" stroke-width="2"/>
+    <circle cx="20"   cy="1100" r="280" fill="none" stroke="rgba(196,154,42,0.06)" stroke-width="1.5"/>
+  </svg>
+  <div class="topbar">
+    <span class="brand-dark">Eugenio Macedo</span>
+    <span class="count-dark">06 / 06</span>
+  </div>
+  <div class="body">
+    <h1 class="cta-headline"><span class="gold">Negócios.</span><br>Fé.<br>Resultado.</h1>
+  </div>
+  <div class="footer">
+    <div class="gold-line"></div>
+    <span class="handle-dark">@eugenio.macedo</span>
+  </div>
+</div>
+
+</body>
+</html>

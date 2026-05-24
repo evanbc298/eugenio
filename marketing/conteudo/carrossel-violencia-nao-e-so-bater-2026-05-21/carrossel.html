@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; background: #111; }
+
+  .slide {
+    width: 1080px;
+    height: 1350px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+
+  .dark  { background: #0E1520; }
+  .light { background: #F5ECD7; }
+
+  /* ── GEO OVERLAY ── */
+  .geo {
+    position: absolute;
+    top: 0; left: 0;
+    width: 1080px; height: 1350px;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    position: absolute;
+    top: 56px; left: 72px; right: 72px;
+    display: flex; align-items: center; justify-content: space-between;
+    z-index: 20;
+  }
+  .logo { font-size: 13px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; }
+  .logo.on-dark  { color: #C49A2A; }
+  .logo.on-light { color: #0E1520; }
+  .counter { font-size: 13px; font-weight: 500; letter-spacing: 0.18em; }
+  .counter.on-dark  { color: rgba(245,240,232,0.28); }
+  .counter.on-light { color: rgba(14,21,32,0.28); }
+
+  /* ── FOOTER ── */
+  .footer {
+    position: absolute;
+    bottom: 58px; left: 72px; right: 72px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 18px;
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(245,240,232,0.22);
+    z-index: 20;
+  }
+  .footer.on-light {
+    border-top: 1px solid rgba(14,21,32,0.08);
+    color: rgba(14,21,32,0.22);
+  }
+
+  /* ── EYEBROW + RULE ── */
+  .eyebrow {
+    font-size: 12px; font-weight: 800;
+    letter-spacing: 0.32em; text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .eyebrow.gold  { color: #C49A2A; }
+  .eyebrow.navy  { color: rgba(14,21,32,0.5); }
+  .rule { width: 52px; height: 2px; margin-bottom: 48px; }
+  .rule.gold  { background: rgba(196,154,42,0.6); }
+  .rule.navy  { background: rgba(14,21,32,0.2); }
+
+  /* ── TYPE CARDS ── */
+  .content-block {
+    position: absolute;
+    left: 72px; right: 72px;
+    top: 490px;
+    z-index: 10;
+  }
+  .type-name {
+    font-size: 56px; font-weight: 800;
+    line-height: 1.04; letter-spacing: -0.03em;
+    margin-bottom: 16px;
+  }
+  .type-name.gold { color: #C49A2A; }
+  .type-name.navy { color: #0E1520; }
+  .type-desc {
+    font-size: 21px; font-weight: 400;
+    line-height: 1.6; max-width: 860px;
+  }
+  .type-desc.dim   { color: rgba(245,240,232,0.6); }
+  .type-desc.muted { color: rgba(14,21,32,0.55); }
+  .sep {
+    width: 48px; height: 1px;
+    margin: 48px 0;
+  }
+  .sep.gold  { background: rgba(196,154,42,0.35); }
+  .sep.navy  { background: rgba(14,21,32,0.15); }
+
+  /* ── SLIDE 1: CAPA ── */
+  #s1 {
+    background:
+      radial-gradient(ellipse 70% 55% at 78% 28%, rgba(196,154,42,0.14) 0%, transparent 65%),
+      #0E1520;
+  }
+  #s1 .copy {
+    position: absolute;
+    bottom: 108px; left: 72px; right: 72px;
+    z-index: 10;
+  }
+  #s1 .tag {
+    display: inline-block;
+    font-size: 11px; font-weight: 800;
+    letter-spacing: 0.32em; text-transform: uppercase;
+    color: #C49A2A;
+    margin-bottom: 24px;
+  }
+  #s1 .title {
+    font-size: 108px; font-weight: 900;
+    line-height: 0.93; letter-spacing: -0.045em;
+    color: #F5F0E8;
+    margin-bottom: 32px;
+  }
+  #s1 .sub {
+    font-size: 20px; font-weight: 400;
+    line-height: 1.6;
+    color: rgba(245,240,232,0.5);
+    max-width: 560px;
+  }
+
+  /* ── SLIDE 2: WHEEL ── */
+  #s2 { background: linear-gradient(170deg, #0D1721 55%, #1C0E06 100%); }
+  #s2 .wheel-wrap {
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -46%);
+    z-index: 5;
+  }
+
+  /* ── SLIDE 7: CTA ── */
+  #s7 { background: #C49A2A; }
+  #s7 .copy {
+    position: absolute;
+    bottom: 120px; left: 72px; right: 72px;
+    z-index: 10;
+  }
+  #s7 .tag {
+    font-size: 11px; font-weight: 800;
+    letter-spacing: 0.32em; text-transform: uppercase;
+    color: rgba(14,21,32,0.55); margin-bottom: 22px;
+  }
+  #s7 .headline {
+    font-size: 80px; font-weight: 900;
+    line-height: 0.96; letter-spacing: -0.04em;
+    color: #0E1520; margin-bottom: 40px;
+    max-width: 760px;
+  }
+  #s7 .handle {
+    font-size: 18px; font-weight: 700;
+    letter-spacing: 0.08em;
+    color: rgba(14,21,32,0.5);
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════
+     SLIDE 1 — CAPA
+══════════════════════════════ -->
+<div class="slide" id="s1">
+  <div class="header">
+    <span class="logo on-dark">Eugenio Macedo</span>
+    <span class="counter on-dark">01 / 07</span>
+  </div>
+
+  <svg class="geo" viewBox="0 0 1080 1350" xmlns="http://www.w3.org/2000/svg">
+    <!-- Huge background arc — top right -->
+    <circle cx="1300" cy="-200" r="900" fill="none" stroke="#C49A2A" stroke-width="1.5" opacity="0.1"/>
+    <circle cx="1300" cy="-200" r="680" fill="none" stroke="#C49A2A" stroke-width="1" opacity="0.07"/>
+    <!-- Mid circle — breathing room left -->
+    <circle cx="-60" cy="520" r="340" fill="none" stroke="#C49A2A" stroke-width="1" opacity="0.09"/>
+    <!-- Small ring — top left accent -->
+    <circle cx="160" cy="148" r="38" fill="none" stroke="#C49A2A" stroke-width="1" opacity="0.22"/>
+    <!-- Horizontal rule accent -->
+    <line x1="72" y1="600" x2="200" y2="600" stroke="#C49A2A" stroke-width="1" opacity="0.2"/>
+    <!-- Dot cluster bottom right -->
+    <circle cx="960" cy="1120" r="4" fill="#C49A2A" opacity="0.2"/>
+    <circle cx="994" cy="1148" r="3" fill="#C49A2A" opacity="0.14"/>
+    <circle cx="944" cy="1155" r="5" fill="#C49A2A" opacity="0.1"/>
+    <circle cx="1016" cy="1118" r="2.5" fill="#C49A2A" opacity="0.16"/>
+  </svg>
+
+  <div class="copy">
+    <div class="tag">Relações &amp; Consciência</div>
+    <div class="title">VIOLÊNCIA<br>NÃO É SÓ<br>BATER.</div>
+    <div class="sub">Existem formas invisíveis que machucam tanto quanto — e que poucas pessoas sabem reconhecer.</div>
+  </div>
+  <div class="footer">@eugenio.macedo</div>
+</div>
+
+<!-- ══════════════════════════════
+     SLIDE 2 — DIAGRAMA
+══════════════════════════════ -->
+<div class="slide" id="s2">
+  <div class="header">
+    <span class="logo on-dark">Eugenio Macedo</span>
+    <span class="counter on-dark">02 / 07</span>
+  </div>
+  <div class="wheel-wrap">
+    <svg id="wheel" width="840" height="840" viewBox="0 0 840 840" xmlns="http://www.w3.org/2000/svg"></svg>
+  </div>
+  <div class="footer">@eugenio.macedo</div>
+</div>
+
+<!-- ══════════════════════════════
+     SLIDE 3 — dark
+     Críticas destrutivas + Intimidação psicológica
+══════════════════════════════ -->
+<div class="slide dark" id="s3">
+  <div class="header">
+    <span class="logo on-dark">Eugenio Macedo</span>
+    <span class="counter on-dark">03 / 07</span>
+  </div>
+
+  <!-- Geometric layer -->
+  <svg class="geo" viewBox="0 0 1080 1350" xmlns="http://www.w3.org/2000/svg">
+    <!-- Large arc — top right -->
+    <circle cx="1240" cy="-60" r="680" fill="none" stroke="#C49A2A" stroke-width="1.5" opacity="0.13"/>
+    <!-- Inner arc echo -->
+    <circle cx="1240" cy="-60" r="500" fill="none" stroke="#C49A2A" stroke-width="1" opacity="0.07"/>
+    <!-- Floating ring — mid left -->
+    <circle cx="96" cy="380" r="52" fill="none" stroke="#C49A2A" stroke-width="1" opacity="0.18"/>
+    <!-- Small accent dots -->
+    <circle cx="860" cy="920" r="4" fill="#C49A2A" opacity="0.22"/>
+    <circle cx="900" cy="960" r="3" fill="#C49A2A" opacity="0.16"/>
+    <circle cx="840" cy="975" r="5" fill="#C49A2A" opacity="0.12"/>
+    <circle cx="930" cy="895" r="2.5" fill="#C49A2A" opacity="0.18"/>
+    <!-- Thin horizontal accent -->
+    <line x1="840" y1="1165" x2="1008" y2="1165" stroke="#C49A2A" stroke-width="1" opacity="0.2"/>
+  </svg>
+
+  <div class="content-block">
+    <div class="eyebrow gold">As formas invisíveis</div>
+    <div class="rule gold"></div>
+    <div>
+      <div class="type-name gold">Críticas destrutivas</div>
+      <div class="type-desc dim">Palavras usadas para diminuir, não para construir. Quando o erro vira ataque à pessoa — não ao comportamento.</div>
+    </div>
+    <div class="sep gold"></div>
+    <div>
+      <div class="type-name gold">Intimidação psicológica</div>
+      <div class="type-desc dim">Comportamentos que criam medo — olhares, gestos, gritos. Mesmo sem toque físico, o efeito é real e profundo.</div>
+    </div>
+  </div>
+
+  <div class="footer">@eugenio.macedo</div>
+</div>
+
+<!-- ══════════════════════════════
+     SLIDE 4 — light
+     Invalidar sentimentos + Chantagem emocional
+══════════════════════════════ -->
+<div class="slide light" id="s4">
+  <div class="header">
+    <span class="logo on-light">Eugenio Macedo</span>
+    <span class="counter on-light">04 / 07</span>
+  </div>
+
+  <svg class="geo" viewBox="0 0 1080 1350" xmlns="http://www.w3.org/2000/svg">
+    <!-- Concentric rings — bottom right corner -->
+    <circle cx="1080" cy="1350" r="280" fill="none" stroke="#0E1520" stroke-width="1" opacity="0.08"/>
+    <circle cx="1080" cy="1350" r="430" fill="none" stroke="#0E1520" stroke-width="1" opacity="0.055"/>
+    <circle cx="1080" cy="1350" r="580" fill="none" stroke="#0E1520" stroke-width="1" opacity="0.035"/>
+    <!-- Small gold filled circle — top area accent -->
+    <circle cx="980" cy="148" r="9" fill="#C49A2A" opacity="0.55"/>
+    <circle cx="1006" cy="168" r="5" fill="#C49A2A" opacity="0.3"/>
+    <!-- Thin vertical line left accent -->
+    <line x1="72" y1="160" x2="72" y2="280" stroke="#0E1520" stroke-width="1" opacity="0.12"/>
+  </svg>
+
+  <div class="content-block">
+    <div class="eyebrow navy">As formas invisíveis</div>
+    <div class="rule navy"></div>
+    <div>
+      <div class="type-name navy">Invalidar sentimentos</div>
+      <div class="type-desc muted">"Você está exagerando." "Isso nunca aconteceu." Negar o que o outro sente é uma forma de controle silencioso.</div>
+    </div>
+    <div class="sep navy"></div>
+    <div>
+      <div class="type-name navy">Chantagem emocional</div>
+      <div class="type-desc muted">Usar o afeto como moeda. Ameaças veladas, culpa e retirada de amor como punição — tudo disfarçado de cuidado.</div>
+    </div>
+  </div>
+
+  <div class="footer on-light">@eugenio.macedo</div>
+</div>
+
+<!-- ══════════════════════════════
+     SLIDE 5 — dark
+     Silêncio punitivo + Manipulação / gaslighting
+══════════════════════════════ -->
+<div class="slide dark" id="s5">
+  <div class="header">
+    <span class="logo on-dark">Eugenio Macedo</span>
+    <span class="counter on-dark">05 / 07</span>
+  </div>
+
+  <svg class="geo" viewBox="0 0 1080 1350" xmlns="http://www.w3.org/2000/svg">
+    <!-- Large arc — top left -->
+    <circle cx="-140" cy="260" r="600" fill="none" stroke="#C49A2A" stroke-width="1.5" opacity="0.11"/>
+    <!-- Secondary arc — smaller, more visible -->
+    <circle cx="-140" cy="260" r="420" fill="none" stroke="#C49A2A" stroke-width="1" opacity="0.07"/>
+    <!-- Small isolated circle — right side -->
+    <circle cx="1004" cy="320" r="44" fill="none" stroke="#C49A2A" stroke-width="1" opacity="0.18"/>
+    <circle cx="1004" cy="320" r="28" fill="none" stroke="#C49A2A" stroke-width="0.8" opacity="0.1"/>
+    <!-- Dot cluster — bottom right -->
+    <circle cx="920" cy="1040" r="3.5" fill="#C49A2A" opacity="0.2"/>
+    <circle cx="950" cy="1060" r="2.5" fill="#C49A2A" opacity="0.15"/>
+    <circle cx="905" cy="1070" r="4"   fill="#C49A2A" opacity="0.12"/>
+    <circle cx="968" cy="1035" r="2"   fill="#C49A2A" opacity="0.18"/>
+    <!-- Thin diagonal line accent -->
+    <line x1="880" y1="1160" x2="1020" y2="1200" stroke="#C49A2A" stroke-width="1" opacity="0.14"/>
+  </svg>
+
+  <div class="content-block">
+    <div class="eyebrow gold">As formas invisíveis</div>
+    <div class="rule gold"></div>
+    <div>
+      <div class="type-name gold">Silêncio punitivo</div>
+      <div class="type-desc dim">Usar o silêncio como arma — ignorar, excluir, punir com indiferença. Uma das formas mais dolorosas e menos reconhecidas.</div>
+    </div>
+    <div class="sep gold"></div>
+    <div>
+      <div class="type-name gold">Manipulação e gaslighting</div>
+      <div class="type-desc dim">Distorcer a realidade do outro até que ele duvide da própria percepção. "Isso nunca aconteceu." "Você inventou."</div>
+    </div>
+  </div>
+
+  <div class="footer">@eugenio.macedo</div>
+</div>
+
+<!-- ══════════════════════════════
+     SLIDE 6 — light
+     Invasão de privacidade + Controle financeiro
+══════════════════════════════ -->
+<div class="slide light" id="s6">
+  <div class="header">
+    <span class="logo on-light">Eugenio Macedo</span>
+    <span class="counter on-light">06 / 07</span>
+  </div>
+
+  <svg class="geo" viewBox="0 0 1080 1350" xmlns="http://www.w3.org/2000/svg">
+    <!-- Dot grid — top right quadrant -->
+    <g opacity="0.18" fill="#0E1520">
+      <!-- 6 cols × 7 rows, spacing 36px, starting at (720, 130) -->
+      <circle cx="720" cy="130" r="2.5"/><circle cx="756" cy="130" r="2.5"/><circle cx="792" cy="130" r="2.5"/>
+      <circle cx="828" cy="130" r="2.5"/><circle cx="864" cy="130" r="2.5"/><circle cx="900" cy="130" r="2.5"/>
+      <circle cx="720" cy="166" r="2.5"/><circle cx="756" cy="166" r="2.5"/><circle cx="792" cy="166" r="2.5"/>
+      <circle cx="828" cy="166" r="2.5"/><circle cx="864" cy="166" r="2.5"/><circle cx="900" cy="166" r="2.5"/>
+      <circle cx="720" cy="202" r="2.5"/><circle cx="756" cy="202" r="2.5"/><circle cx="792" cy="202" r="2.5"/>
+      <circle cx="828" cy="202" r="2.5"/><circle cx="864" cy="202" r="2.5"/><circle cx="900" cy="202" r="2.5"/>
+      <circle cx="720" cy="238" r="2.5"/><circle cx="756" cy="238" r="2.5"/><circle cx="792" cy="238" r="2.5"/>
+      <circle cx="828" cy="238" r="2.5"/><circle cx="864" cy="238" r="2.5"/><circle cx="900" cy="238" r="2.5"/>
+      <circle cx="720" cy="274" r="2.5"/><circle cx="756" cy="274" r="2.5"/><circle cx="792" cy="274" r="2.5"/>
+      <circle cx="828" cy="274" r="2.5"/><circle cx="864" cy="274" r="2.5"/><circle cx="900" cy="274" r="2.5"/>
+      <circle cx="720" cy="310" r="2.5"/><circle cx="756" cy="310" r="2.5"/><circle cx="792" cy="310" r="2.5"/>
+      <circle cx="828" cy="310" r="2.5"/><circle cx="864" cy="310" r="2.5"/><circle cx="900" cy="310" r="2.5"/>
+      <circle cx="720" cy="346" r="2.5"/><circle cx="756" cy="346" r="2.5"/><circle cx="792" cy="346" r="2.5"/>
+      <circle cx="828" cy="346" r="2.5"/><circle cx="864" cy="346" r="2.5"/><circle cx="900" cy="346" r="2.5"/>
+    </g>
+    <!-- Gold accent mark — top left -->
+    <rect x="72" y="140" width="48" height="3" fill="#C49A2A" opacity="0.5" rx="1.5"/>
+    <!-- Large soft arc — bottom left -->
+    <circle cx="-60" cy="1350" r="500" fill="none" stroke="#0E1520" stroke-width="1" opacity="0.06"/>
+    <circle cx="-60" cy="1350" r="360" fill="none" stroke="#0E1520" stroke-width="0.8" opacity="0.04"/>
+  </svg>
+
+  <div class="content-block">
+    <div class="eyebrow navy">As formas invisíveis</div>
+    <div class="rule navy"></div>
+    <div>
+      <div class="type-name navy">Invasão de privacidade</div>
+      <div class="type-desc muted">Ler mensagens, rastrear localização, controlar com quem se fala. Controle disfarçado de cuidado — e igualmente destrutivo.</div>
+    </div>
+    <div class="sep navy"></div>
+    <div>
+      <div class="type-name navy">Controle financeiro</div>
+      <div class="type-desc muted">Impedir acesso ao dinheiro, monitorar gastos, criar dependência econômica deliberada. Uma prisão sem grades visíveis.</div>
+    </div>
+  </div>
+
+  <div class="footer on-light">@eugenio.macedo</div>
+</div>
+
+<!-- ══════════════════════════════
+     SLIDE 7 — CTA
+══════════════════════════════ -->
+<div class="slide" id="s7">
+  <div class="header">
+    <span class="logo" style="color:rgba(14,21,32,0.5);letter-spacing:0.28em;font-size:13px;font-weight:700;text-transform:uppercase;">Eugenio Macedo</span>
+    <span class="counter" style="color:rgba(14,21,32,0.3);font-size:13px;font-weight:500;letter-spacing:0.18em;">07 / 07</span>
+  </div>
+
+  <svg class="geo" viewBox="0 0 1080 1350" xmlns="http://www.w3.org/2000/svg">
+    <!-- Large dark circle arc — top right -->
+    <circle cx="1160" cy="-80" r="680" fill="none" stroke="#0E1520" stroke-width="1.5" opacity="0.12"/>
+    <circle cx="1160" cy="-80" r="480" fill="none" stroke="#0E1520" stroke-width="1" opacity="0.08"/>
+    <!-- Small ring — bottom left -->
+    <circle cx="130" cy="1240" r="60" fill="none" stroke="#0E1520" stroke-width="1" opacity="0.15"/>
+    <circle cx="130" cy="1240" r="36" fill="none" stroke="#0E1520" stroke-width="0.8" opacity="0.1"/>
+    <!-- Dot accent top left -->
+    <circle cx="88" cy="168" r="5" fill="#0E1520" opacity="0.2"/>
+    <circle cx="108" cy="154" r="3" fill="#0E1520" opacity="0.14"/>
+  </svg>
+
+  <div class="copy">
+    <div class="tag">Eugenio Macedo</div>
+    <div class="headline">Reconhecer<br>é o primeiro<br>passo.</div>
+    <div class="handle">@eugenio.macedo</div>
+  </div>
+
+  <div class="footer" style="border-top:1px solid rgba(14,21,32,0.12);color:rgba(14,21,32,0.3);">@eugenio.macedo</div>
+</div>
+
+<script>
+/* ── WHEEL DIAGRAM ── */
+(function() {
+  const CX = 420, CY = 420, R = 390, r = 196, GAP = 1.6;
+  const segments = [
+    { label: ['Intimidação', 'psicológica'], fill: '#163A5F' },
+    { label: ['Invalidar', 'sentimentos'],   fill: '#0C2438' },
+    { label: ['Chantagem', 'emocional'],     fill: '#1C4870' },
+    { label: ['Invasão de', 'privacidade'],  fill: '#0C2438' },
+    { label: ['Controle', 'financeiro'],     fill: '#163A5F' },
+    { label: ['Silêncio', 'punitivo'],       fill: '#0C2438' },
+    { label: ['Manipulação', 'gaslighting'], fill: '#1C4870' },
+    { label: ['Críticas', 'destrutivas'],    fill: '#0C2438' },
+  ];
+
+  function xy(deg, rad) {
+    const a = deg * Math.PI / 180;
+    return [CX + rad * Math.sin(a), CY - rad * Math.cos(a)];
+  }
+
+  function arc(s, e) {
+    const [x1,y1]=xy(s+GAP,R), [x2,y2]=xy(e-GAP,R);
+    const [x3,y3]=xy(e-GAP,r), [x4,y4]=xy(s+GAP,r);
+    const lg=(e-s-GAP*2>180)?1:0, f=n=>n.toFixed(2);
+    return `M${f(x1)},${f(y1)} A${R},${R},0,${lg},1,${f(x2)},${f(y2)} L${f(x3)},${f(y3)} A${r},${r},0,${lg},0,${f(x4)},${f(y4)} Z`;
+  }
+
+  const N=segments.length, step=360/N;
+  const midR=(R+r)/2;
+  let out='';
+
+  for(let i=0;i<N;i++){
+    const s=i*step, e=(i+1)*step, mid=(s+e)/2;
+    const [lx,ly]=xy(mid,midR);
+    const seg=segments[i];
+    out+=`<path d="${arc(s,e)}" fill="${seg.fill}"/>`;
+    const lh=30, th=(seg.label.length-1)*lh;
+    out+=`<text text-anchor="middle" font-family="Inter,sans-serif" font-size="22" font-weight="700" fill="#C8BAA6">`;
+    seg.label.forEach((line,j)=>{
+      out+=`<tspan x="${lx.toFixed(2)}" y="${(ly - th/2 + j*lh + 8).toFixed(2)}">${line}</tspan>`;
+    });
+    out+=`</text>`;
+  }
+
+  out+=`<circle cx="${CX}" cy="${CY}" r="${r-7}" fill="#0D1721"/>`;
+  out+=`<text text-anchor="middle" font-family="Inter,sans-serif" font-size="35" font-weight="900" fill="#F0EAE0">`;
+  out+=`<tspan x="${CX}" y="${CY-24}">VIOLÊNCIA</tspan>`;
+  out+=`<tspan x="${CX}" y="${CY+18}">NÃO É SÓ</tspan>`;
+  out+=`</text>`;
+  out+=`<text x="${CX}" y="${CY+56}" text-anchor="middle" font-family="Inter,sans-serif" font-size="36" font-weight="900" fill="#C49A2A">BATER</text>`;
+
+  document.getElementById('wheel').innerHTML=out;
+})();
+</script>
+</body>
+</html>

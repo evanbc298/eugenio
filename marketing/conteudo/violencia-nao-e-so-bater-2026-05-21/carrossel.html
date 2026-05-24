@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>Violência não é só bater</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #888;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px;
+}
+
+/* ── Base slide ── */
+.slide {
+  width: 1080px;
+  height: 1350px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #F3F9F9;
+}
+
+/* ── Teal top block ── */
+.tblock {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 510px;
+  background: #145858;
+  overflow: hidden;
+}
+
+/* Decorative concentric circles — upper right */
+.tblock svg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+}
+
+/* Number inside tblock */
+.tblock-num {
+  position: absolute;
+  bottom: 52px;
+  left: 72px;
+  font-size: 148px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: #fff;
+}
+
+/* Small category label above number */
+.tblock-cat {
+  position: absolute;
+  bottom: 220px;
+  left: 76px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+}
+
+/* ── Top bar ── */
+.topbar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  padding: 48px 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.series {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+}
+
+.counter {
+  font-size: 15px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.1em;
+}
+
+/* ── Thin accent line at tblock bottom ── */
+.tblock-border {
+  position: absolute;
+  top: 510px;
+  left: 0; right: 0;
+  height: 3px;
+  background: #4A9090;
+  opacity: 0.35;
+}
+
+/* ── Text content ── */
+.content {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 0 72px 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 840px;
+}
+
+.headline {
+  font-size: 88px;
+  font-weight: 900;
+  line-height: 1.01;
+  letter-spacing: -0.03em;
+  color: #0C2A2A;
+  margin-bottom: 32px;
+}
+
+.headline .teal { color: #4A9090; }
+
+.desc {
+  font-size: 27px;
+  font-weight: 400;
+  line-height: 1.55;
+  color: rgba(12,42,42,0.5);
+  max-width: 860px;
+  margin-bottom: 60px;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.teal-line {
+  flex: 1;
+  height: 2px;
+  background: #4A9090;
+  opacity: 0.35;
+}
+
+.handle {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: rgba(12,42,42,0.28);
+  flex-shrink: 0;
+}
+
+/* ── Capa / CTA — full dark ── */
+.slide-dark {
+  background: #0D2E2E;
+}
+
+.slide-dark .topbar .series { color: rgba(255,255,255,0.3); }
+.slide-dark .topbar .counter { color: rgba(255,255,255,0.2); }
+.slide-dark .headline        { color: #F0FAFA; }
+.slide-dark .headline .teal  { color: #4A9090; }
+.slide-dark .desc            { color: rgba(240,250,250,0.4); }
+.slide-dark .teal-line       { opacity: 0.25; background: #4A9090; }
+.slide-dark .handle          { color: rgba(240,250,250,0.25); }
+</style>
+</head>
+<body>
+
+<!-- ══ S1 — CAPA ══ -->
+<div class="slide slide-dark">
+  <!-- Decorative circles full-slide -->
+  <svg style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none" viewBox="0 0 1080 1350">
+    <circle cx="980" cy="200"  r="460" fill="none" stroke="rgba(74,144,144,0.12)" stroke-width="2"/>
+    <circle cx="980" cy="200"  r="340" fill="none" stroke="rgba(74,144,144,0.10)" stroke-width="2"/>
+    <circle cx="980" cy="200"  r="220" fill="none" stroke="rgba(74,144,144,0.08)" stroke-width="2"/>
+    <line   x1="72" y1="1260" x2="600" y2="1260" stroke="rgba(74,144,144,0.2)" stroke-width="1.5"/>
+  </svg>
+  <div class="topbar">
+    <span class="series">Eugenio Macedo</span>
+    <span class="counter">01 / 10</span>
+  </div>
+  <div class="content">
+    <div style="font-size:14px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#4A9090;margin-bottom:28px;">Consciência</div>
+    <h1 class="headline">Violência<br>não é<br><span class="teal">só bater.</span></h1>
+    <p class="desc">8 formas de agressão que machucam tanto quanto um soco — e passam despercebidas.</p>
+    <div class="footer">
+      <div class="teal-line"></div>
+      <span class="handle">@eugenio.macedo</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ S2 — Críticas destrutivas ══ -->
+<div class="slide">
+  <div class="tblock">
+    <svg viewBox="0 0 1080 510">
+      <circle cx="1020" cy="-60" r="420" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="2.5"/>
+      <circle cx="1020" cy="-60" r="300" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+      <circle cx="1020" cy="-60" r="180" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1.5"/>
+    </svg>
+    <span class="tblock-cat">01 — Verbal</span>
+    <span class="tblock-num">01</span>
+  </div>
+  <div class="tblock-border"></div>
+  <div class="topbar">
+    <span class="series">Violência não é só bater</span>
+    <span class="counter">02 / 10</span>
+  </div>
+  <div class="content">
+    <h1 class="headline">Críticas<br><span class="teal">destrutivas</span></h1>
+    <p class="desc">Atacar quem a pessoa é, não o que ela fez. Isso corrói a autoestima sem deixar marca visível.</p>
+    <div class="footer">
+      <div class="teal-line"></div>
+      <span class="handle">@eugenio.macedo</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ S3 — Intimidação psicológica ══ -->
+<div class="slide">
+  <div class="tblock">
+    <svg viewBox="0 0 1080 510">
+      <circle cx="1020" cy="-60" r="420" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="2.5"/>
+      <circle cx="1020" cy="-60" r="300" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+      <circle cx="1020" cy="-60" r="180" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1.5"/>
+    </svg>
+    <span class="tblock-cat">02 — Psicológica</span>
+    <span class="tblock-num">02</span>
+  </div>
+  <div class="tblock-border"></div>
+  <div class="topbar">
+    <span class="series">Violência não é só bater</span>
+    <span class="counter">03 / 10</span>
+  </div>
+  <div class="content">
+    <h1 class="headline">Intimidação<br><span class="teal">psicológica</span></h1>
+    <p class="desc">Criar medo como ferramenta de controle. Olhares, gestos ou ameaças que não precisam de palavras.</p>
+    <div class="footer">
+      <div class="teal-line"></div>
+      <span class="handle">@eugenio.macedo</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ S4 — Invalidar sentimentos ══ -->
+<div class="slide">
+  <div class="tblock">
+    <svg viewBox="0 0 1080 510">
+      <circle cx="1020" cy="-60" r="420" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="2.5"/>
+      <circle cx="1020" cy="-60" r="300" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+      <circle cx="1020" cy="-60" r="180" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1.5"/>
+    </svg>
+    <span class="tblock-cat">03 — Emocional</span>
+    <span class="tblock-num">03</span>
+  </div>
+  <div class="tblock-border"></div>
+  <div class="topbar">
+    <span class="series">Violência não é só bater</span>
+    <span class="counter">04 / 10</span>
+  </div>
+  <div class="content">
+    <h1 class="headline">Invalidar<br><span class="teal">sentimentos</span></h1>
+    <p class="desc">Fazer a pessoa duvidar do que sente. "Você está exagerando" é uma frase que destrói por dentro.</p>
+    <div class="footer">
+      <div class="teal-line"></div>
+      <span class="handle">@eugenio.macedo</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ S5 — Chantagem emocional ══ -->
+<div class="slide">
+  <div class="tblock">
+    <svg viewBox="0 0 1080 510">
+      <circle cx="1020" cy="-60" r="420" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="2.5"/>
+      <circle cx="1020" cy="-60" r="300" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+      <circle cx="1020" cy="-60" r="180" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1.5"/>
+    </svg>
+    <span class="tblock-cat">04 — Emocional</span>
+    <span class="tblock-num">04</span>
+  </div>
+  <div class="tblock-border"></div>
+  <div class="topbar">
+    <span class="series">Violência não é só bater</span>
+    <span class="counter">05 / 10</span>
+  </div>
+  <div class="content">
+    <h1 class="headline">Chantagem<br><span class="teal">emocional</span></h1>
+    <p class="desc">Usar o afeto como moeda de troca. Amor condicionado ao comportamento é uma prisão sem grades.</p>
+    <div class="footer">
+      <div class="teal-line"></div>
+      <span class="handle">@eugenio.macedo</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ S6 — Invasão de privacidade ══ -->
+<div class="slide">
+  <div class="tblock">
+    <svg viewBox="0 0 1080 510">
+      <circle cx="1020" cy="-60" r="420" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="2.5"/>
+      <circle cx="1020" cy="-60" r="300" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+      <circle cx="1020" cy="-60" r="180" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1.5"/>
+    </svg>
+    <span class="tblock-cat">05 — Controle</span>
+    <span class="tblock-num">05</span>
+  </div>
+  <div class="tblock-border"></div>
+  <div class="topbar">
+    <span class="series">Violência não é só bater</span>
+    <span class="counter">06 / 10</span>
+  </div>
+  <div class="content">
+    <h1 class="headline">Invasão de<br><span class="teal">privacidade</span></h1>
+    <p class="desc">Tratar o espaço, o celular e os pensamentos do outro como propriedade. Controle disfarçado de cuidado.</p>
+    <div class="footer">
+      <div class="teal-line"></div>
+      <span class="handle">@eugenio.macedo</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ S7 — Controle financeiro ══ -->
+<div class="slide">
+  <div class="tblock">
+    <svg viewBox="0 0 1080 510">
+      <circle cx="1020" cy="-60" r="420" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="2.5"/>
+      <circle cx="1020" cy="-60" r="300" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+      <circle cx="1020" cy="-60" r="180" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1.5"/>
+    </svg>
+    <span class="tblock-cat">06 — Financeira</span>
+    <span class="tblock-num">06</span>
+  </div>
+  <div class="tblock-border"></div>
+  <div class="topbar">
+    <span class="series">Violência não é só bater</span>
+    <span class="counter">07 / 10</span>
+  </div>
+  <div class="content">
+    <h1 class="headline">Controle<br><span class="teal">financeiro</span></h1>
+    <p class="desc">Usar o dinheiro para criar dependência. Quem controla o bolso controla a vida — e as escolhas.</p>
+    <div class="footer">
+      <div class="teal-line"></div>
+      <span class="handle">@eugenio.macedo</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ S8 — Silêncio punitivo ══ -->
+<div class="slide">
+  <div class="tblock">
+    <svg viewBox="0 0 1080 510">
+      <circle cx="1020" cy="-60" r="420" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="2.5"/>
+      <circle cx="1020" cy="-60" r="300" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+      <circle cx="1020" cy="-60" r="180" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1.5"/>
+    </svg>
+    <span class="tblock-cat">07 — Passiva</span>
+    <span class="tblock-num">07</span>
+  </div>
+  <div class="tblock-border"></div>
+  <div class="topbar">
+    <span class="series">Violência não é só bater</span>
+    <span class="counter">08 / 10</span>
+  </div>
+  <div class="content">
+    <h1 class="headline">Silêncio<br><span class="teal">punitivo</span></h1>
+    <p class="desc">Punir com ausência e indiferença. O silêncio usado como arma faz tanto estrago quanto gritos.</p>
+    <div class="footer">
+      <div class="teal-line"></div>
+      <span class="handle">@eugenio.macedo</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ S9 — Manipulação / gaslighting ══ -->
+<div class="slide">
+  <div class="tblock">
+    <svg viewBox="0 0 1080 510">
+      <circle cx="1020" cy="-60" r="420" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="2.5"/>
+      <circle cx="1020" cy="-60" r="300" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+      <circle cx="1020" cy="-60" r="180" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1.5"/>
+    </svg>
+    <span class="tblock-cat">08 — Psicológica</span>
+    <span class="tblock-num">08</span>
+  </div>
+  <div class="tblock-border"></div>
+  <div class="topbar">
+    <span class="series">Violência não é só bater</span>
+    <span class="counter">09 / 10</span>
+  </div>
+  <div class="content">
+    <h1 class="headline">Manipulação<br><span class="teal">gaslighting</span></h1>
+    <p class="desc">Distorcer a realidade de quem você ama. "Isso nunca aconteceu" é o começo de uma destruição silenciosa.</p>
+    <div class="footer">
+      <div class="teal-line"></div>
+      <span class="handle">@eugenio.macedo</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ S10 — CTA ══ -->
+<div class="slide slide-dark">
+  <svg style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none" viewBox="0 0 1080 1350">
+    <circle cx="100"  cy="1150" r="380" fill="none" stroke="rgba(74,144,144,0.12)" stroke-width="2"/>
+    <circle cx="100"  cy="1150" r="260" fill="none" stroke="rgba(74,144,144,0.09)" stroke-width="2"/>
+    <circle cx="100"  cy="1150" r="140" fill="none" stroke="rgba(74,144,144,0.07)" stroke-width="1.5"/>
+    <line   x1="72" y1="1260" x2="600" y2="1260" stroke="rgba(74,144,144,0.2)" stroke-width="1.5"/>
+  </svg>
+  <div class="topbar">
+    <span class="series">Eugenio Macedo</span>
+    <span class="counter">10 / 10</span>
+  </div>
+  <div class="content">
+    <div style="font-size:14px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#4A9090;margin-bottom:28px;">Reconhecer é o primeiro passo</div>
+    <h1 class="headline">Violência<br>se reconhece.<br><span class="teal">E se enfrenta.</span></h1>
+    <div class="footer">
+      <div class="teal-line"></div>
+      <span class="handle">@eugenio.macedo</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

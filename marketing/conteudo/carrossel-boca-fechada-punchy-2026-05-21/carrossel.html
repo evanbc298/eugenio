@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>Boca Fechada Mata — Eugenio Macedo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #111;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px;
+}
+
+.slide {
+  width: 1080px;
+  height: 1350px;
+  position: relative;
+  background: #0E1520;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Photo — top 760px */
+.photo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 760px;
+  background-size: cover;
+  background-position: center top;
+}
+
+/* Gradient: photo fades into dark */
+.fade {
+  position: absolute;
+  top: 430px;
+  left: 0;
+  right: 0;
+  height: 400px;
+  background: linear-gradient(to bottom, transparent 0%, #0E1520 100%);
+  pointer-events: none;
+}
+
+/* Top bar */
+.topbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 44px 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+  background: linear-gradient(to bottom, rgba(14,21,32,0.55) 0%, transparent 100%);
+}
+
+.brand {
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #F5ECD7;
+}
+
+.counter {
+  font-size: 17px;
+  font-weight: 500;
+  color: rgba(245, 236, 215, 0.4);
+  letter-spacing: 0.1em;
+}
+
+/* Text content — anchored to bottom */
+.content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0 72px 68px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 650px;
+}
+
+.label {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #C49A2A;
+  margin-bottom: 26px;
+}
+
+.headline {
+  font-size: 90px;
+  font-weight: 900;
+  line-height: 1.02;
+  color: #F5ECD7;
+  letter-spacing: -0.025em;
+  margin-bottom: 52px;
+}
+
+.headline .gold { color: #C49A2A; }
+
+.sub {
+  font-size: 22px;
+  font-weight: 500;
+  color: rgba(245, 236, 215, 0.45);
+  letter-spacing: 0.04em;
+  margin-top: -36px;
+  margin-bottom: 52px;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.gold-line {
+  flex: 1;
+  height: 2px;
+  background: #C49A2A;
+  opacity: 0.75;
+}
+
+.handle {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: rgba(245, 236, 215, 0.45);
+  flex-shrink: 0;
+}
+
+/* CTA slide — pure dark, content centered */
+.slide-cta .content {
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  justify-content: center;
+  padding: 0 72px;
+}
+
+.slide-cta .headline {
+  font-size: 110px;
+  margin-bottom: 60px;
+}
+
+.slide-cta .footer {
+  position: absolute;
+  bottom: 68px;
+  left: 72px;
+  right: 72px;
+}
+</style>
+</head>
+<body>
+
+<!-- Slide 1 — Capa -->
+<div class="slide">
+  <div class="photo" style="background-image: url('foto-01.png');"></div>
+  <div class="fade"></div>
+  <div class="topbar">
+    <span class="brand">Eugenio Macedo</span>
+    <span class="counter">01 / 06</span>
+  </div>
+  <div class="content">
+    <div class="label">Negócios &amp; Vida</div>
+    <h1 class="headline">Boca fechada<br><span class="gold">mata.</span></h1>
+    <div class="footer">
+      <div class="gold-line"></div>
+      <span class="handle">@eugenio.macedo</span>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 2 -->
+<div class="slide">
+  <div class="photo" style="background-image: url('foto-02.png'); background-position: center center;"></div>
+  <div class="fade"></div>
+  <div class="topbar">
+    <span class="brand">Eugenio Macedo</span>
+    <span class="counter">02 / 06</span>
+  </div>
+  <div class="content">
+    <div class="label">01 — Negócios</div>
+    <h1 class="headline">Mata o negócio<br>que você<br>não <span class="gold">pediu.</span></h1>
+    <div class="footer">
+      <div class="gold-line"></div>
+      <span class="handle">@eugenio.macedo</span>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 3 -->
+<div class="slide">
+  <div class="photo" style="background-image: url('foto-03.png'); background-position: center center;"></div>
+  <div class="fade"></div>
+  <div class="topbar">
+    <span class="brand">Eugenio Macedo</span>
+    <span class="counter">03 / 06</span>
+  </div>
+  <div class="content">
+    <div class="label">02 — Clientes</div>
+    <h1 class="headline">Mata o cliente<br>que você não<br><span class="gold">abordou.</span></h1>
+    <div class="footer">
+      <div class="gold-line"></div>
+      <span class="handle">@eugenio.macedo</span>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 4 — Virada -->
+<div class="slide">
+  <div class="photo" style="background-image: url('foto-04.png'); background-position: center center;"></div>
+  <div class="fade"></div>
+  <div class="topbar">
+    <span class="brand">Eugenio Macedo</span>
+    <span class="counter">04 / 06</span>
+  </div>
+  <div class="content">
+    <div class="label">Mas tem outro silêncio</div>
+    <h1 class="headline">O de quem tem<br>experiência e<br>guarda <span class="gold">pra si.</span></h1>
+    <div class="footer">
+      <div class="gold-line"></div>
+      <span class="handle">@eugenio.macedo</span>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 5 — Conclusão -->
+<div class="slide">
+  <div class="photo" style="background-image: url('foto-05.png'); background-position: center center;"></div>
+  <div class="fade"></div>
+  <div class="topbar">
+    <span class="brand">Eugenio Macedo</span>
+    <span class="counter">05 / 06</span>
+  </div>
+  <div class="content">
+    <div class="label">A conclusão</div>
+    <h1 class="headline">Quem sabe e<br>não fala perde<br><span class="gold">duas vezes.</span></h1>
+    <p class="sub">O negócio. E a conexão.</p>
+    <div class="footer">
+      <div class="gold-line"></div>
+      <span class="handle">@eugenio.macedo</span>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 6 — CTA (sem foto, fundo escuro) -->
+<div class="slide slide-cta">
+  <div class="topbar">
+    <span class="brand">Eugenio Macedo</span>
+    <span class="counter">06 / 06</span>
+  </div>
+  <div class="content">
+    <div class="label">Estou disponível</div>
+    <h1 class="headline">Estou aqui<br><span class="gold">pra falar.</span></h1>
+    <div class="footer">
+      <div class="gold-line"></div>
+      <span class="handle">@eugenio.macedo</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
