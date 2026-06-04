@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vitimismo — Eugenio Macedo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body { font-family: 'Inter', sans-serif; background: #111; }
+
+  .slide {
+    width: 1080px;
+    height: 1350px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+
+  /* ── CORES ── */
+  .dark  { background: #0E1520; }
+  .light { background: #F5ECD7; }
+  .gold  { background: #C49A2A; }
+
+  /* ── HEADER (logo + counter) ── */
+  .header {
+    position: absolute;
+    top: 56px;
+    left: 72px;
+    right: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 10;
+  }
+  .logo {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+  }
+  .logo.on-dark  { color: #C49A2A; }
+  .logo.on-light { color: #0E1520; }
+  .logo.on-gold  { color: #0E1520; }
+
+  .counter {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+  }
+  .counter.on-dark  { color: rgba(245,240,232,0.35); }
+  .counter.on-light { color: rgba(14,21,32,0.35); }
+  .counter.on-gold  { color: rgba(14,21,32,0.45); }
+
+  /* ── LINHA FINA (divisor de rodapé) ── */
+  .footer-line {
+    position: absolute;
+    bottom: 72px;
+    left: 72px;
+    right: 72px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 20px;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.3);
+  }
+  .footer-line.on-light {
+    border-top: 1px solid rgba(14,21,32,0.12);
+    color: rgba(14,21,32,0.3);
+  }
+  .footer-line.on-gold {
+    border-top: 1px solid rgba(14,21,32,0.15);
+    color: rgba(14,21,32,0.4);
+  }
+
+  /* ── EYEBROW ── */
+  .eyebrow {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #C49A2A;
+    margin-bottom: 22px;
+  }
+  .eyebrow.dark-text { color: #0E1520; }
+
+  /* ── RÉGUA ── */
+  .rule {
+    width: 64px;
+    height: 3px;
+    background: #C49A2A;
+    margin-bottom: 36px;
+  }
+  .rule.dark-rule { background: #0E1520; }
+  .rule.white { background: #F5F0E8; }
+
+  /* ── SLIDE 1: CAPA SÓLIDA ── */
+  #s1 {
+    background: #0E1520;
+  }
+  #s1 .content {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 72px;
+    right: 72px;
+  }
+  #s1 .title {
+    font-size: 106px;
+    font-weight: 900;
+    line-height: 0.96;
+    letter-spacing: -0.04em;
+    color: #F5F0E8;
+    margin-bottom: 36px;
+  }
+  #s1 .subtitle {
+    font-size: 26px;
+    font-weight: 500;
+    color: rgba(245,240,232,0.65);
+    line-height: 1.5;
+    max-width: 560px;
+  }
+
+  /* ── SLIDE 2: SOLO dark ── */
+  #s2 .content {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 72px;
+    right: 72px;
+  }
+  #s2 .big-num {
+    font-size: 260px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    color: rgba(196,154,42,0.10);
+    position: absolute;
+    top: 72px;
+    right: 40px;
+  }
+  #s2 .phrase {
+    font-size: 74px;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    color: #F5F0E8;
+    max-width: 820px;
+  }
+
+  /* ── SLIDE 3: CITAÇÃO light ── */
+  #s3 .content {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 72px;
+    right: 72px;
+  }
+  #s3 .quote-mark {
+    font-size: 220px;
+    font-weight: 900;
+    line-height: 0.7;
+    color: rgba(196,154,42,0.15);
+    margin-bottom: 12px;
+    font-family: Georgia, serif;
+  }
+  #s3 .phrase {
+    font-size: 60px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: #1A1A1A;
+    max-width: 840px;
+    margin-bottom: 36px;
+  }
+  #s3 .attribution {
+    font-size: 20px;
+    font-weight: 600;
+    color: rgba(26,26,26,0.45);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ── SLIDE 4: dark ── */
+  #s4 .content {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-55%);
+    left: 72px;
+    right: 72px;
+  }
+  #s4 .phrase {
+    font-size: 66px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: #F5F0E8;
+    max-width: 860px;
+    margin-bottom: 40px;
+  }
+  #s4 .phrase em {
+    font-style: normal;
+    color: #C49A2A;
+  }
+  #s4 .sub {
+    font-size: 28px;
+    font-weight: 500;
+    color: rgba(245,240,232,0.5);
+    line-height: 1.5;
+    max-width: 700px;
+  }
+
+  /* ── SLIDE 5: VIRADA gold ── */
+  #s5 .content {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 72px;
+    right: 72px;
+  }
+  #s5 .label {
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(14,21,32,0.5);
+    margin-bottom: 32px;
+  }
+  #s5 .phrase {
+    font-size: 70px;
+    font-weight: 900;
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+    color: #0E1520;
+    max-width: 860px;
+    margin-bottom: 32px;
+  }
+  #s5 .phrase-2 {
+    font-size: 32px;
+    font-weight: 600;
+    color: rgba(14,21,32,0.65);
+    line-height: 1.4;
+  }
+
+  /* ── SLIDE 6: CITAÇÃO light ── */
+  #s6 .content {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 72px;
+    right: 72px;
+  }
+  #s6 .phrase {
+    font-size: 76px;
+    font-weight: 900;
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+    color: #1A1A1A;
+    max-width: 860px;
+    margin-bottom: 36px;
+  }
+  #s6 .complement {
+    font-size: 30px;
+    font-weight: 600;
+    color: #C49A2A;
+    letter-spacing: 0.01em;
+  }
+
+  /* ── SLIDE 7: CTA FINAL ── */
+  #s7 {
+    background: #C49A2A;
+  }
+  #s7 .content {
+    position: absolute;
+    bottom: 140px;
+    left: 72px;
+    right: 72px;
+  }
+  #s7 .cta-label {
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(14,21,32,0.5);
+    margin-bottom: 28px;
+  }
+  #s7 .cta-title {
+    font-size: 84px;
+    font-weight: 900;
+    line-height: 0.96;
+    letter-spacing: -0.04em;
+    color: #0E1520;
+    margin-bottom: 44px;
+  }
+  #s7 .handle {
+    font-size: 24px;
+    font-weight: 600;
+    color: rgba(14,21,32,0.55);
+    letter-spacing: 0.05em;
+  }
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1 — CAPA -->
+<div class="slide" id="s1">
+  <div class="header">
+    <span class="logo on-dark">Eugenio Macedo</span>
+    <span class="counter on-dark">01 / 07</span>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Mentalidade</div>
+    <div class="title">VITI-<br>MISMO.</div>
+    <div class="subtitle">O padrão que te mantém parado sem você perceber.</div>
+  </div>
+  <div class="footer-line">@eugenio.macedo</div>
+</div>
+
+<!-- SLIDE 2 — dark -->
+<div class="slide dark" id="s2">
+  <div class="header">
+    <span class="logo on-dark">Eugenio Macedo</span>
+    <span class="counter on-dark">02 / 07</span>
+  </div>
+  <div class="big-num">2</div>
+  <div class="content">
+    <div class="eyebrow">O que é</div>
+    <div class="rule white"></div>
+    <div class="phrase">Vitimismo não é fraqueza. É um padrão aprendido. E todo padrão tem custo.</div>
+  </div>
+  <div class="footer-line">@eugenio.macedo</div>
+</div>
+
+<!-- SLIDE 3 — CITAÇÃO light -->
+<div class="slide light" id="s3">
+  <div class="header">
+    <span class="logo on-light">Eugenio Macedo</span>
+    <span class="counter on-light">03 / 07</span>
+  </div>
+  <div class="content">
+    <div class="quote-mark">"</div>
+    <div class="rule"></div>
+    <div class="phrase">O vitimismo é um instrumento do eu inferior para roubar energia do outro.</div>
+    <div class="attribution">— Sri Prem Baba</div>
+  </div>
+  <div class="footer-line on-light">@eugenio.macedo</div>
+</div>
+
+<!-- SLIDE 4 — dark -->
+<div class="slide dark" id="s4">
+  <div class="header">
+    <span class="logo on-dark">Eugenio Macedo</span>
+    <span class="counter on-dark">04 / 07</span>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Os sinais</div>
+    <div class="rule white"></div>
+    <div class="phrase">Vida estagnada. Rancores que não soltam. <em>Dificuldade de assumir o que é seu.</em></div>
+    <div class="sub">Esses padrões não aparecem de uma vez — chegam devagar, disfarçados de razão.</div>
+  </div>
+  <div class="footer-line">@eugenio.macedo</div>
+</div>
+
+<!-- SLIDE 5 — VIRADA gold -->
+<div class="slide gold" id="s5">
+  <div class="header">
+    <span class="logo on-gold">Eugenio Macedo</span>
+    <span class="counter on-gold">05 / 07</span>
+  </div>
+  <div class="content">
+    <div class="label">O que ninguém te diz</div>
+    <div class="phrase">Enquanto você espera o mundo te pagar o que deve, o mundo segue.</div>
+    <div class="phrase-2">A conta fica pra você.</div>
+  </div>
+  <div class="footer-line on-gold">@eugenio.macedo</div>
+</div>
+
+<!-- SLIDE 6 — light -->
+<div class="slide light" id="s6">
+  <div class="header">
+    <span class="logo on-light">Eugenio Macedo</span>
+    <span class="counter on-light">06 / 07</span>
+  </div>
+  <div class="content">
+    <div class="eyebrow">A saída</div>
+    <div class="rule"></div>
+    <div class="phrase">Assumir responsabilidade não é se culpar. É se tornar o agente.</div>
+    <div class="complement">Esse é o primeiro passo.</div>
+  </div>
+  <div class="footer-line on-light">@eugenio.macedo</div>
+</div>
+
+<!-- SLIDE 7 — CTA gold -->
+<div class="slide" id="s7">
+  <div class="header">
+    <span class="logo on-gold">Eugenio Macedo</span>
+    <span class="counter on-gold">07 / 07</span>
+  </div>
+  <div class="content">
+    <div class="cta-label">Eugenio Macedo</div>
+    <div class="cta-title">Negócios<br>pedem quem<br>avança.</div>
+    <div class="handle">@eugenio.macedo</div>
+  </div>
+</div>
+
+</body>
+</html>
