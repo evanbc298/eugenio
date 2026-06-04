@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mesa Diante dos Inimigos — Eugenio Macedo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; background: #111; }
+
+  .slide {
+    width: 1080px;
+    height: 1350px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+
+  .dark  { background: #0E1520; }
+  .light { background: #F5ECD7; }
+  .gold  { background: #C49A2A; }
+
+  /* HEADER */
+  .header {
+    position: absolute;
+    top: 56px;
+    left: 72px;
+    right: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 10;
+  }
+  .logo { font-size: 14px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; }
+  .logo.on-dark  { color: #C49A2A; }
+  .logo.on-light { color: #0E1520; }
+  .logo.on-gold  { color: #0E1520; }
+  .counter { font-size: 14px; font-weight: 500; letter-spacing: 0.18em; }
+  .counter.on-dark  { color: rgba(245,240,232,0.35); }
+  .counter.on-light { color: rgba(14,21,32,0.35); }
+  .counter.on-gold  { color: rgba(14,21,32,0.45); }
+
+  /* FOOTER */
+  .footer-line {
+    position: absolute;
+    bottom: 72px;
+    left: 72px;
+    right: 72px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 20px;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.3);
+  }
+  .footer-line.on-light {
+    border-top: 1px solid rgba(14,21,32,0.12);
+    color: rgba(14,21,32,0.3);
+  }
+  .footer-line.on-gold {
+    border-top: 1px solid rgba(14,21,32,0.15);
+    color: rgba(14,21,32,0.4);
+  }
+
+  /* EYEBROW */
+  .eyebrow {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #C49A2A;
+    margin-bottom: 22px;
+  }
+  .eyebrow.dark-text { color: #0E1520; }
+
+  /* RÉGUA */
+  .rule { width: 64px; height: 3px; background: #C49A2A; margin-bottom: 36px; }
+  .rule.white { background: rgba(245,240,232,0.5); }
+  .rule.dark-rule { background: rgba(14,21,32,0.3); }
+
+  /* CONTEÚDO CENTRALIZADO */
+  .content-center {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 72px;
+    right: 72px;
+  }
+  .content-bottom {
+    position: absolute;
+    bottom: 148px;
+    left: 72px;
+    right: 72px;
+  }
+
+  /* TIPOGRAFIA */
+  .kicker {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .kicker.on-dark  { color: rgba(245,240,232,0.4); }
+  .kicker.on-light { color: rgba(14,21,32,0.4); }
+  .kicker.on-gold  { color: rgba(14,21,32,0.45); }
+
+  .h1-dark {
+    font-size: 96px;
+    font-weight: 900;
+    line-height: 0.97;
+    letter-spacing: -0.04em;
+    color: #F5F0E8;
+    margin-bottom: 32px;
+  }
+  .h1-light {
+    font-size: 88px;
+    font-weight: 900;
+    line-height: 0.97;
+    letter-spacing: -0.04em;
+    color: #1A1A1A;
+    margin-bottom: 32px;
+  }
+  .h1-gold {
+    font-size: 88px;
+    font-weight: 900;
+    line-height: 0.97;
+    letter-spacing: -0.04em;
+    color: #0E1520;
+    margin-bottom: 32px;
+  }
+
+  .h2-dark {
+    font-size: 72px;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    color: #F5F0E8;
+    margin-bottom: 32px;
+  }
+  .h2-light {
+    font-size: 72px;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    color: #1A1A1A;
+    margin-bottom: 32px;
+  }
+  .h2-gold {
+    font-size: 72px;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    color: #0E1520;
+    margin-bottom: 32px;
+  }
+
+  .body-dark {
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 1.55;
+    color: rgba(245,240,232,0.6);
+  }
+  .body-light {
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 1.55;
+    color: rgba(14,21,32,0.6);
+  }
+  .body-gold {
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: rgba(14,21,32,0.65);
+  }
+
+  em { font-style: normal; color: #C49A2A; }
+  .light em { color: #0E1520; font-weight: 800; }
+  .gold em { color: #F5F0E8; font-weight: 900; }
+
+  /* SLIDE 1 — CAPA dark */
+  #s1 .content-center { top: 48%; }
+  #s1 .question {
+    font-size: 58px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: #F5F0E8;
+    margin-bottom: 36px;
+    max-width: 880px;
+  }
+  #s1 .question em { color: #C49A2A; font-style: normal; }
+  #s1 .sub {
+    font-size: 28px;
+    font-weight: 500;
+    color: rgba(245,240,232,0.5);
+    line-height: 1.5;
+  }
+
+  /* SLIDE 3 — lista */
+  #s3 .list {
+    list-style: none;
+    margin-bottom: 40px;
+  }
+  #s3 .list li {
+    font-size: 36px;
+    font-weight: 700;
+    color: #F5F0E8;
+    line-height: 1.3;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(245,240,232,0.1);
+    letter-spacing: -0.01em;
+  }
+  #s3 .list li:last-child { border-bottom: none; }
+  #s3 .list li span {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #C49A2A;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  /* SLIDE 5 — lista diante */
+  #s5 .list {
+    list-style: none;
+    margin-bottom: 40px;
+  }
+  #s5 .list li {
+    font-size: 34px;
+    font-weight: 600;
+    color: rgba(14,21,32,0.8);
+    line-height: 1.3;
+    padding: 16px 0 16px 28px;
+    border-bottom: 1px solid rgba(14,21,32,0.1);
+    position: relative;
+  }
+  #s5 .list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #C49A2A;
+  }
+  #s5 .list li:last-child { border-bottom: none; }
+
+  /* SLIDE 10 — CTA */
+  #s10 { background: #0E1520; }
+  #s10 .content-center {
+    text-align: left;
+  }
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1 — CAPA dark -->
+<div class="slide dark" id="s1">
+  <div class="header">
+    <span class="logo on-dark">Eugenio Macedo</span>
+    <span class="counter on-dark">01 / 10</span>
+  </div>
+  <div class="content-center">
+    <div class="eyebrow">Fé &amp; Vida</div>
+    <div class="rule white"></div>
+    <div class="question">O que Davi quis dizer com <em>"Preparas uma mesa na presença dos meus inimigos"</em>?</div>
+    <div class="sub">Pouca gente percebe o que está escrito de verdade.</div>
+  </div>
+  <div class="footer-line">@eugenio.macedo</div>
+</div>
+
+<!-- SLIDE 2 — light -->
+<div class="slide light" id="s2">
+  <div class="header">
+    <span class="logo on-light">Eugenio Macedo</span>
+    <span class="counter on-light">02 / 10</span>
+  </div>
+  <div class="content-center">
+    <div class="eyebrow dark-text">No hebraico</div>
+    <div class="rule dark-rule"></div>
+    <div class="h2-light">A palavra <em>"mesa"</em> não significa só comida.</div>
+    <div class="body-light">No original, ela carrega um peso muito maior.</div>
+  </div>
+  <div class="footer-line on-light">@eugenio.macedo</div>
+</div>
+
+<!-- SLIDE 3 — dark com lista -->
+<div class="slide dark" id="s3">
+  <div class="header">
+    <span class="logo on-dark">Eugenio Macedo</span>
+    <span class="counter on-dark">03 / 10</span>
+  </div>
+  <div class="content-center">
+    <div class="eyebrow">"Shulchan" representa</div>
+    <div class="rule white"></div>
+    <ul class="list">
+      <li>Honra</li>
+      <li>Comunhão</li>
+      <li>Pertencimento</li>
+      <li>Provisão</li>
+      <li>Descanso</li>
+    </ul>
+    <div class="body-dark">Davi não falava de refeição. Falava de <em>posicionamento</em>.</div>
+  </div>
+  <div class="footer-line">@eugenio.macedo</div>
+</div>
+
+<!-- SLIDE 4 — gold -->
+<div class="slide gold" id="s4">
+  <div class="header">
+    <span class="logo on-gold">Eugenio Macedo</span>
+    <span class="counter on-gold">04 / 10</span>
+  </div>
+  <div class="content-center">
+    <div class="kicker on-gold">A palavra "NEGED"</div>
+    <div class="h1-gold"><em>"Diante</em><br>deles."</div>
+    <div class="body-gold">Deus não faz escondido. Ele age na frente de quem duvidou de você.</div>
+  </div>
+  <div class="footer-line on-gold">@eugenio.macedo</div>
+</div>
+
+<!-- SLIDE 5 — light com lista -->
+<div class="slide light" id="s5">
+  <div class="header">
+    <span class="logo on-light">Eugenio Macedo</span>
+    <span class="counter on-light">05 / 10</span>
+  </div>
+  <div class="content-center">
+    <div class="eyebrow dark-text">Ele sustenta você</div>
+    <div class="rule dark-rule"></div>
+    <ul class="list">
+      <li>Diante da oposição</li>
+      <li>Diante da perseguição</li>
+      <li>Diante de quem tentou ver sua queda</li>
+    </ul>
+    <div class="h2-light" style="font-size:54px; margin-bottom:0;">O cuidado de Deus é <em>visível</em>.</div>
+  </div>
+  <div class="footer-line on-light">@eugenio.macedo</div>
+</div>
+
+<!-- SLIDE 6 — dark -->
+<div class="slide dark" id="s6">
+  <div class="header">
+    <span class="logo on-dark">Eugenio Macedo</span>
+    <span class="counter on-dark">06 / 10</span>
+  </div>
+  <div class="content-center">
+    <div class="eyebrow">O mais forte</div>
+    <div class="rule white"></div>
+    <div class="h2-dark">Davi fala de <em>paz</em><br>em meio à guerra.</div>
+    <div class="body-dark">Não após a batalha. Durante ela.</div>
+  </div>
+  <div class="footer-line">@eugenio.macedo</div>
+</div>
+
+<!-- SLIDE 7 — light -->
+<div class="slide light" id="s7">
+  <div class="header">
+    <span class="logo on-light">Eugenio Macedo</span>
+    <span class="counter on-light">07 / 10</span>
+  </div>
+  <div class="content-center">
+    <div class="eyebrow dark-text">Cultura hebraica</div>
+    <div class="rule dark-rule"></div>
+    <div class="h2-light" style="font-size:60px;">Sentar à mesa significava <em>segurança</em>.</div>
+    <div class="body-light">Os inimigos estavam presentes. Mas não tinham poder pra tocar o que Deus protegia.</div>
+  </div>
+  <div class="footer-line on-light">@eugenio.macedo</div>
+</div>
+
+<!-- SLIDE 8 — dark -->
+<div class="slide dark" id="s8">
+  <div class="header">
+    <span class="logo on-dark">Eugenio Macedo</span>
+    <span class="counter on-dark">08 / 10</span>
+  </div>
+  <div class="content-center">
+    <div class="h2-dark" style="font-size:80px;">Quem Deus sustenta pode <em>descansar</em> mesmo em batalha.</div>
+  </div>
+  <div class="footer-line">@eugenio.macedo</div>
+</div>
+
+<!-- SLIDE 9 — gold -->
+<div class="slide gold" id="s9">
+  <div class="header">
+    <span class="logo on-gold">Eugenio Macedo</span>
+    <span class="counter on-gold">09 / 10</span>
+  </div>
+  <div class="content-center">
+    <div class="kicker on-gold">Resumindo</div>
+    <div class="h1-gold" style="font-size:72px; margin-bottom:36px;">Deus não apenas<br>te protege.</div>
+    <div class="body-gold" style="font-size:34px;">Ele <strong>honra</strong>, <strong>sustenta</strong> e <strong>posiciona</strong> — diante de quem tentou te derrubar.</div>
+  </div>
+  <div class="footer-line on-gold">@eugenio.macedo</div>
+</div>
+
+<!-- SLIDE 10 — CTA dark -->
+<div class="slide dark" id="s10">
+  <div class="header">
+    <span class="logo on-dark">Eugenio Macedo</span>
+    <span class="counter on-dark">10 / 10</span>
+  </div>
+  <div class="content-center">
+    <div class="eyebrow">Compartilha</div>
+    <div class="rule white"></div>
+    <div class="h2-dark" style="font-size:76px; margin-bottom:36px;">Salva esse carrossel.</div>
+    <div class="body-dark" style="font-size:32px;">Compartilha com quem precisa dessa palavra hoje.</div>
+  </div>
+  <div class="footer-line">@eugenio.macedo</div>
+</div>
+
+</body>
+</html>
