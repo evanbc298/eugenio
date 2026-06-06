@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ainda Dá Tempo — Eugenio Macedo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; background: #080d14; }
+
+  .slide {
+    width: 1080px;
+    height: 1350px;
+    background: #0E1520;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+
+  /* COUNTER — discreto, canto superior direito */
+  .counter {
+    position: absolute;
+    top: 56px;
+    right: 72px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: rgba(245,240,232,0.18);
+    z-index: 10;
+  }
+
+  /* RODAPÉ */
+  .footer {
+    position: absolute;
+    bottom: 72px;
+    left: 72px;
+    right: 72px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding-top: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.2);
+  }
+
+  /* CONTEÚDO CENTRAL */
+  .content {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 72px;
+    right: 72px;
+  }
+
+  /* FRASE PRINCIPAL */
+  .frase {
+    font-weight: 900;
+    line-height: 1.0;
+    letter-spacing: -0.04em;
+    color: #F5F0E8;
+  }
+  .frase em {
+    font-style: normal;
+    color: #C49A2A;
+  }
+
+  /* TAMANHOS POR SLIDE */
+  #s1 .frase { font-size: 118px; }
+  #s2 .frase { font-size: 96px; line-height: 1.02; }
+  #s3 .frase { font-size: 88px; line-height: 1.04; }
+  #s4 .frase { font-size: 88px; line-height: 1.04; }
+  #s5 .frase { font-size: 96px; line-height: 1.02; }
+  #s6 .frase { font-size: 88px; line-height: 1.04; }
+  #s7 .frase { font-size: 96px; line-height: 1.02; }
+
+  /* SLIDE 8 — CTA */
+  #s8 .content { text-align: left; }
+  #s8 .frase {
+    font-size: 140px;
+    line-height: 0.95;
+    letter-spacing: -0.05em;
+  }
+  #s8 .sub {
+    margin-top: 48px;
+    font-size: 24px;
+    font-weight: 500;
+    color: rgba(245,240,232,0.35);
+    letter-spacing: 0.05em;
+  }
+
+  /* LINHA DECORATIVA — slide 1 */
+  #s1 .linha {
+    width: 56px;
+    height: 3px;
+    background: #C49A2A;
+    margin-bottom: 48px;
+  }
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1 — CAPA -->
+<div class="slide" id="s1">
+  <div class="counter">01 / 08</div>
+  <div class="content">
+    <div class="linha"></div>
+    <div class="frase">Não é fraqueza<br>sentir.<br>É fraqueza <em>parar</em>.</div>
+  </div>
+  <div class="footer">@eugenio.macedo</div>
+</div>
+
+<!-- SLIDE 2 -->
+<div class="slide" id="s2">
+  <div class="counter">02 / 08</div>
+  <div class="content">
+    <div class="frase">A dor <em>passa</em>.<br>O arrependimento<br>de ter parado, não.</div>
+  </div>
+  <div class="footer">@eugenio.macedo</div>
+</div>
+
+<!-- SLIDE 3 -->
+<div class="slide" id="s3">
+  <div class="counter">03 / 08</div>
+  <div class="content">
+    <div class="frase">Você não perdeu<br>tempo. Você<br><em>aprendeu</em> o preço<br>das coisas.</div>
+  </div>
+  <div class="footer">@eugenio.macedo</div>
+</div>
+
+<!-- SLIDE 4 -->
+<div class="slide" id="s4">
+  <div class="counter">04 / 08</div>
+  <div class="content">
+    <div class="frase">A vida não te<br>deve nada. Mas<br>ela te dá tudo<br>que você <em>constrói</em>.</div>
+  </div>
+  <div class="footer">@eugenio.macedo</div>
+</div>
+
+<!-- SLIDE 5 -->
+<div class="slide" id="s5">
+  <div class="counter">05 / 08</div>
+  <div class="content">
+    <div class="frase">Ninguém sabe<br>o que <em>carregou</em><br>até chegar<br>onde chegou.</div>
+  </div>
+  <div class="footer">@eugenio.macedo</div>
+</div>
+
+<!-- SLIDE 6 -->
+<div class="slide" id="s6">
+  <div class="counter">06 / 08</div>
+  <div class="content">
+    <div class="frase">Fé não é acreditar<br>que vai ser fácil.<br>É <em>seguir</em> mesmo<br>quando não é.</div>
+  </div>
+  <div class="footer">@eugenio.macedo</div>
+</div>
+
+<!-- SLIDE 7 -->
+<div class="slide" id="s7">
+  <div class="counter">07 / 08</div>
+  <div class="content">
+    <div class="frase">Salva o que ainda<br>dá pra salvar.<br>E segue com<br>o que <em>sobrou</em>.</div>
+  </div>
+  <div class="footer">@eugenio.macedo</div>
+</div>
+
+<!-- SLIDE 8 — CTA -->
+<div class="slide" id="s8">
+  <div class="counter">08 / 08</div>
+  <div class="content">
+    <div class="frase">Ainda<br>dá<br><em>tempo</em>.</div>
+    <div class="sub">@eugenio.macedo</div>
+  </div>
+  <div class="footer">@eugenio.macedo</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>A Fé do Empresário — Eugenio Macedo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background: #080d14; }
+
+.slide {
+  width: 1080px;
+  height: 1350px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.bg-dark  { background: #0E1520; }
+.bg-light { background: #F5ECD7; }
+.bg-gold  { background: #C49A2A; }
+
+/* TOP BAR */
+.topbar {
+  position: absolute;
+  top: 48px;
+  left: 72px;
+  right: 72px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+}
+.topbar-left {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.topbar-handle {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.counter-pill {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  padding: 7px 18px;
+  border-radius: 100px;
+}
+
+.bg-dark  .topbar-left,
+.bg-dark  .topbar-handle { color: rgba(245,240,232,0.22); }
+.bg-dark  .counter-pill { background: rgba(245,240,232,0.09); color: rgba(245,240,232,0.5); }
+
+.bg-light .topbar-left,
+.bg-light .topbar-handle { color: rgba(14,21,32,0.3); }
+.bg-light .counter-pill { background: rgba(14,21,32,0.1); color: rgba(14,21,32,0.5); }
+
+.bg-gold  .topbar-left,
+.bg-gold  .topbar-handle { color: rgba(14,21,32,0.38); }
+.bg-gold  .counter-pill { background: rgba(14,21,32,0.16); color: rgba(14,21,32,0.6); }
+
+/* EM highlight */
+em { font-style: normal; }
+.bg-dark  em { color: #C49A2A; }
+.bg-light em { color: #9A7520; }
+.bg-gold  em { color: #0E1520; font-weight: 900; }
+
+/* CONTENT */
+.content {
+  position: absolute;
+  left: 72px;
+  right: 72px;
+}
+
+/* H1 */
+.h1 {
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.0;
+}
+.bg-dark  .h1 { color: #F5F0E8; }
+.bg-light .h1 { color: #0E1520; }
+.bg-gold  .h1 { color: #0E1520; }
+
+/* Body */
+.body {
+  font-weight: 500;
+  line-height: 1.68;
+}
+.bg-dark  .body { color: rgba(245,240,232,0.72); }
+.bg-light .body { color: rgba(14,21,32,0.72); }
+.bg-gold  .body { color: rgba(14,21,32,0.75); }
+
+/* Eyebrow */
+.eyebrow {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+.bg-dark  .eyebrow { color: #C49A2A; }
+.bg-light .eyebrow { color: #9A7520; }
+
+/* Quote block */
+.quote-block {
+  padding: 32px 40px;
+  border-radius: 10px;
+  border-left: 3px solid;
+}
+.bg-dark  .quote-block { background: rgba(245,240,232,0.04); border-left-color: #C49A2A; }
+.bg-light .quote-block { background: rgba(14,21,32,0.04); border-left-color: #9A7520; }
+
+.quote-text {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.55;
+  font-style: italic;
+}
+.bg-dark  .quote-text { color: rgba(245,240,232,0.82); }
+.bg-light .quote-text { color: rgba(14,21,32,0.78); }
+
+.quote-ref {
+  margin-top: 14px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+.bg-dark  .quote-ref { color: rgba(196,154,42,0.65); }
+.bg-light .quote-ref { color: rgba(154,117,32,0.65); }
+
+/* Arrow list */
+.arrow-list { display: flex; flex-direction: column; }
+.arrow-item {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 26px 0;
+  border-bottom: 1px solid;
+}
+.bg-dark  .arrow-item { border-color: rgba(245,240,232,0.08); }
+.bg-light .arrow-item { border-color: rgba(14,21,32,0.1); }
+.arrow-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+.arr {
+  font-size: 30px;
+  font-weight: 700;
+  flex-shrink: 0;
+  line-height: 1.5;
+}
+.bg-dark  .arr { color: #C49A2A; }
+.bg-light .arr { color: #9A7520; }
+
+.arr-text {
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.bg-dark  .arr-text { color: rgba(245,240,232,0.82); }
+.bg-light .arr-text { color: rgba(14,21,32,0.78); }
+
+/* Divider */
+.divider {
+  border: none;
+  height: 1px;
+}
+.bg-dark  .divider { background: rgba(245,240,232,0.08); }
+.bg-light .divider { background: rgba(14,21,32,0.1); }
+
+/* Bottom bar */
+.bottom-bar {
+  position: absolute;
+  bottom: 64px;
+  left: 72px;
+  right: 72px;
+  padding-top: 20px;
+  border-top: 1px solid;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+.bg-dark  .bottom-bar { border-color: rgba(245,240,232,0.08); color: rgba(245,240,232,0.18); }
+.bg-light .bottom-bar { border-color: rgba(14,21,32,0.1); color: rgba(14,21,32,0.22); }
+.bg-gold  .bottom-bar { border-color: rgba(14,21,32,0.12); color: rgba(14,21,32,0.35); }
+</style>
+</head>
+<body>
+
+<!-- S1 — DARK — CAPA -->
+<div class="slide bg-dark" id="s1">
+  <div class="topbar">
+    <span class="topbar-left">Powered by MazyOS</span>
+    <div class="topbar-right">
+      <span class="topbar-handle">@eugenio.macedo</span>
+      <span class="counter-pill">1/10</span>
+    </div>
+  </div>
+
+  <!-- luz sutil de fundo -->
+  <div style="position:absolute; top:-120px; left:50%; transform:translateX(-50%); width:700px; height:700px; background:radial-gradient(ellipse, rgba(196,154,42,0.07) 0%, transparent 70%); pointer-events:none;"></div>
+
+  <div class="content" style="bottom:130px; top:auto;">
+    <div style="width:48px; height:3px; background:#C49A2A; margin-bottom:40px;"></div>
+    <div class="h1" style="font-size:90px; line-height:0.97;">
+      A FÉ NÃO<br>
+      APARECE NO<br>
+      BALANÇO. MAS<br>
+      É ELA QUE<br>
+      MANTÉM O<br>
+      EMPRESÁRIO<br>
+      <em>EM PÉ.</em>
+    </div>
+    <div style="margin-top:36px; font-size:21px; font-weight:600; color:rgba(245,240,232,0.38); letter-spacing:0.04em;">
+      → O que separa os que atravessam crises dos que não voltam
+    </div>
+  </div>
+</div>
+
+<!-- S2 — DARK -->
+<div class="slide bg-dark" id="s2">
+  <div class="topbar">
+    <span class="topbar-left">Powered by MazyOS</span>
+    <div class="topbar-right">
+      <span class="topbar-handle">@eugenio.macedo</span>
+      <span class="counter-pill">2/10</span>
+    </div>
+  </div>
+
+  <div class="content" style="top:152px;">
+    <div class="h1" style="font-size:58px; line-height:1.15; letter-spacing:-0.02em;">
+      "Toda vez que o mercado colapsa,<br>as igrejas <em>enchem</em>."
+    </div>
+
+    <div class="divider" style="margin-top:44px;"></div>
+
+    <div class="body" style="margin-top:40px; font-size:33px;">
+      Não é coincidência. Em cenários de alta incerteza, o ser humano busca uma âncora que vai além do que os dados mostram.
+    </div>
+
+    <div class="body" style="margin-top:32px; font-size:33px;">
+      A ciência comportamental chama isso de <span style="color:#F5F0E8; font-weight:700;">regulação emocional</span>. A Bíblia chama de <em><strong>fé</strong></em>. Os dois descrevem o mesmo mecanismo: a necessidade humana de agir com convicção mesmo sem garantia de resultado.
+    </div>
+  </div>
+
+  <div class="bottom-bar">@eugenio.macedo</div>
+</div>
+
+<!-- S3 — LIGHT -->
+<div class="slide bg-light" id="s3">
+  <div class="topbar">
+    <span class="topbar-left">Powered by MazyOS</span>
+    <div class="topbar-right">
+      <span class="topbar-handle">@eugenio.macedo</span>
+      <span class="counter-pill">3/10</span>
+    </div>
+  </div>
+
+  <div class="content" style="top:152px;">
+    <div class="h1" style="font-size:78px; text-transform:uppercase; line-height:1.0;">
+      O PROBLEMA<br>NÃO É A CRISE.<br>É A <em>PARALISIA</em>.
+    </div>
+
+    <div class="divider" style="margin-top:44px;"></div>
+
+    <div class="body" style="margin-top:40px; font-size:33px;">
+      O empresário que enfrenta uma reversão séria não para por falta de opção. Para por falta de certeza. E certeza, em momento de crise, não existe.
+    </div>
+
+    <div style="margin-top:36px; display:flex; gap:18px; align-items:flex-start;">
+      <span class="arr" style="padding-top:2px;">→</span>
+      <span class="body" style="font-size:33px;">É aqui que entra o que a Bíblia chama de fé. Não como resposta mística. Como <span style="color:#0E1520; font-weight:700;">postura operacional</span>.</span>
+    </div>
+  </div>
+
+  <div class="bottom-bar">@eugenio.macedo</div>
+</div>
+
+<!-- S4 — LIGHT -->
+<div class="slide bg-light" id="s4">
+  <div class="topbar">
+    <span class="topbar-left">Powered by MazyOS</span>
+    <div class="topbar-right">
+      <span class="topbar-handle">@eugenio.macedo</span>
+      <span class="counter-pill">4/10</span>
+    </div>
+  </div>
+
+  <div class="content" style="top:152px;">
+    <div class="h1" style="font-size:70px; text-transform:uppercase; line-height:1.04;">
+      A FÉ ATIVA TRÊS MECANISMOS QUE O RACIONAL <em>NÃO CONSEGUE</em>:
+    </div>
+
+    <div class="arrow-list" style="margin-top:44px;">
+      <div class="arrow-item">
+        <span class="arr">→</span>
+        <span class="arr-text">Reduz a paralisia por análise — você age sem esperar garantia</span>
+      </div>
+      <div class="arrow-item">
+        <span class="arr">→</span>
+        <span class="arr-text">Mantém o horizonte longo quando o curto prazo sangra</span>
+      </div>
+      <div class="arrow-item">
+        <span class="arr">→</span>
+        <span class="arr-text">Dá sentido ao esforço quando o resultado ainda não apareceu</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">@eugenio.macedo</div>
+</div>
+
+<!-- S5 — DARK -->
+<div class="slide bg-dark" id="s5">
+  <div class="topbar">
+    <span class="topbar-left">Powered by MazyOS</span>
+    <div class="topbar-right">
+      <span class="topbar-handle">@eugenio.macedo</span>
+      <span class="counter-pill">5/10</span>
+    </div>
+  </div>
+
+  <div class="content" style="top:152px;">
+    <div class="h1" style="font-size:78px; text-transform:uppercase; line-height:1.02;">
+      DAVI NÃO ESPEROU CERTEZA PARA <em>AVANÇAR</em>.
+    </div>
+
+    <div class="body" style="margin-top:44px; font-size:33px;">
+      Ele tinha uma funda, cinco pedras e a convicção de que não estava sozinho. A lógica dizia: espere condições melhores. A fé disse: avança agora.
+    </div>
+
+    <div class="quote-block" style="margin-top:48px;">
+      <div class="quote-text">"Não temas, pois eu sou contigo; não te assombres, porque eu sou teu Deus. Eu te fortaleço e te ajudo."</div>
+      <div class="quote-ref">Isaías 41:10</div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">@eugenio.macedo</div>
+</div>
+
+<!-- S6 — LIGHT -->
+<div class="slide bg-light" id="s6">
+  <div class="topbar">
+    <span class="topbar-left">Powered by MazyOS</span>
+    <div class="topbar-right">
+      <span class="topbar-handle">@eugenio.macedo</span>
+      <span class="counter-pill">6/10</span>
+    </div>
+  </div>
+
+  <div class="content" style="top:152px;">
+    <div class="eyebrow" style="margin-bottom:22px;">Salmo 23:5</div>
+    <div class="h1" style="font-size:73px; text-transform:uppercase; line-height:1.02;">
+      "PREPARAS UMA MESA NA PRESENÇA DOS MEUS <em>INIMIGOS</em>"
+    </div>
+
+    <div class="divider" style="margin-top:40px;"></div>
+
+    <div class="body" style="margin-top:36px; font-size:31px;">
+      Esse versículo é lido como promessa futura. O texto diz outra coisa: o banquete acontece <span style="color:#0E1520; font-weight:700;">enquanto os inimigos observam</span>. No meio da adversidade — não depois.
+    </div>
+
+    <div style="margin-top:32px; display:flex; gap:18px; align-items:flex-start;">
+      <span class="arr" style="font-size:31px; padding-top:2px;">→</span>
+      <span class="body" style="font-size:31px;">A fé não remove o inimigo. Ela muda sua relação com ele.</span>
+    </div>
+  </div>
+
+  <div class="bottom-bar">@eugenio.macedo</div>
+</div>
+
+<!-- S7 — GOLD — VIRADA -->
+<div class="slide bg-gold" id="s7">
+  <div class="topbar">
+    <span class="topbar-left">Powered by MazyOS</span>
+    <div class="topbar-right">
+      <span class="topbar-handle">@eugenio.macedo</span>
+      <span class="counter-pill">7/10</span>
+    </div>
+  </div>
+
+  <div class="content" style="top:50%; transform:translateY(-50%);">
+    <div class="h1" style="font-size:82px; line-height:1.07; color:#0E1520;">
+      A fé não é acreditar que vai ser fácil. É <em>agir</em> mesmo quando o caminho não está claro.
+    </div>
+  </div>
+
+  <div class="bottom-bar">@eugenio.macedo</div>
+</div>
+
+<!-- S8 — LIGHT -->
+<div class="slide bg-light" id="s8">
+  <div class="topbar">
+    <span class="topbar-left">Powered by MazyOS</span>
+    <div class="topbar-right">
+      <span class="topbar-handle">@eugenio.macedo</span>
+      <span class="counter-pill">8/10</span>
+    </div>
+  </div>
+
+  <div class="content" style="top:152px;">
+    <div class="h1" style="font-size:82px; text-transform:uppercase; line-height:0.98;">
+      FÉ PASSIVA<br>×<br><em>FÉ ATIVA</em>
+    </div>
+
+    <div style="margin-top:44px; display:flex; flex-direction:column; gap:0;">
+      <div style="padding:28px 0; border-bottom:1px solid rgba(14,21,32,0.1);">
+        <div style="font-size:12px; font-weight:800; letter-spacing:0.28em; text-transform:uppercase; color:rgba(14,21,32,0.35); margin-bottom:10px;">Passiva</div>
+        <div class="arr-text" style="font-size:30px; color:rgba(14,21,32,0.45);">Espera o problema resolver sozinho porque "Deus vai agir"</div>
+      </div>
+      <div style="padding:28px 0 0 0;">
+        <div style="font-size:12px; font-weight:800; letter-spacing:0.28em; text-transform:uppercase; color:#9A7520; margin-bottom:10px;">Ativa</div>
+        <div class="arr-text" style="font-size:30px;">Age no que pode, entrega o que não pode — e não confunde as duas coisas</div>
+      </div>
+    </div>
+
+    <div class="divider" style="margin-top:44px;"></div>
+    <div class="body" style="margin-top:32px; font-size:30px;">
+      A diferença não é teológica. É operacional. E define se você sai da crise maior ou menor do que entrou.
+    </div>
+  </div>
+
+  <div class="bottom-bar">@eugenio.macedo</div>
+</div>
+
+<!-- S9 — DARK -->
+<div class="slide bg-dark" id="s9">
+  <div class="topbar">
+    <span class="topbar-left">Powered by MazyOS</span>
+    <div class="topbar-right">
+      <span class="topbar-handle">@eugenio.macedo</span>
+      <span class="counter-pill">9/10</span>
+    </div>
+  </div>
+
+  <div class="content" style="top:152px;">
+    <div class="h1" style="font-size:74px; text-transform:uppercase; line-height:1.04;">
+      QUEM OPERA EM MERCADO INCERTO JÁ <em>ENTENDE</em> ISSO.
+    </div>
+
+    <div class="body" style="margin-top:48px; font-size:33px;">
+      Permuta de veículo não tem planilha que garanta o negócio. Cada operação envolve variáveis que a análise financeira não modela.
+    </div>
+
+    <div class="body" style="margin-top:32px; font-size:33px;">
+      O que segura quem opera nesse nível não é o dado. É a convicção de que o próximo negócio existe — e que <span style="color:#F5F0E8; font-weight:700;">vale a pena ir buscar</span>.
+    </div>
+  </div>
+
+  <div class="bottom-bar">@eugenio.macedo</div>
+</div>
+
+<!-- S10 — DARK — CTA -->
+<div class="slide bg-dark" id="s10">
+  <div class="topbar">
+    <span class="topbar-left">Powered by MazyOS</span>
+    <div class="topbar-right">
+      <span class="topbar-handle">@eugenio.macedo</span>
+      <span class="counter-pill">10/10</span>
+    </div>
+  </div>
+
+  <div class="content" style="top:50%; transform:translateY(-50%);">
+    <div class="h1" style="font-size:102px; line-height:0.94; letter-spacing:-0.04em;">
+      SE ISSO<br><em>FEZ</em><br><em>SENTIDO</em>,
+    </div>
+    <div style="margin-top:52px; display:flex; gap:20px; align-items:flex-start;">
+      <span style="font-size:28px; font-weight:700; color:#C49A2A; flex-shrink:0; padding-top:4px;">→</span>
+      <span class="body" style="font-size:28px; line-height:1.6;">Segue o perfil. Aqui a gente fala de negócio, fé e o que realmente mantém um empresário em pé.</span>
+    </div>
+    <div style="margin-top:52px; height:1px; background:rgba(245,240,232,0.1);"></div>
+    <div style="margin-top:28px; font-size:21px; font-weight:800; letter-spacing:0.22em; text-transform:uppercase; color:rgba(245,240,232,0.3);">@eugenio.macedo</div>
+  </div>
+</div>
+
+</body>
+</html>
